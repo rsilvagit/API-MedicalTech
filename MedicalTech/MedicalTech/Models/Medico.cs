@@ -1,5 +1,9 @@
-﻿namespace MedicalTech.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MedicalTech.Models
 {
+    [Table("Medico")]
     public class Medico:Pesssoa
     {
        public string InstEnsinoForm { get; set; }

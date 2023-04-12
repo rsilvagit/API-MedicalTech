@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9/Kmu3JxObEHKbHbQ8I6QFPRXDrnQ7++K+kua464iwe8GVJg/WfWJmzHW0czyGjhjHYQS3Oha3Pf9xbuXHS+VA==",
+  "dgSpecHash": "hZthNY+I6gkrRr1iP2mmC+sZ+ObugO0EzBcPPwLQ0SOMLAp8pJoprCAhSHc5lYbip91JCdLlaCYNWBtA104gEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arbos\\Downloads\\Semana_10-main\\Semana_10-main\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
+  "projectFilePath": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arbos\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\arbos\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

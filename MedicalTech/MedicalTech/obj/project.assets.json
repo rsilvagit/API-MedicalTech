@@ -3917,11 +3917,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arbos\\Downloads\\Semana_10-main\\Semana_10-main\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
+      "projectUniqueName": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
       "projectName": "MedicalTech",
-      "projectPath": "C:\\Users\\arbos\\Downloads\\Semana_10-main\\Semana_10-main\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
+      "projectPath": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
       "packagesPath": "C:\\Users\\arbos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arbos\\Downloads\\Semana_10-main\\Semana_10-main\\MedicalTech\\MedicalTech\\obj\\",
+      "outputPath": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\arbos\\AppData\\Roaming\\NuGet\\NuGet.Config",

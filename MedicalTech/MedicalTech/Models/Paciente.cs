@@ -1,5 +1,8 @@
-﻿namespace MedicalTech.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MedicalTech.Models
 {
+    [Table("Paciente")]
     public class Paciente:Pesssoa
     {
         public string? ContatoDeEmergencia { get; set; }
