@@ -8,10 +8,10 @@ namespace MedicalTech.Models
     {
         public MedicalTechContext(DbContextOptions<MedicalTechContext> options) : base(options) { } 
         public DbSet<Pesssoa> Pesssoas { get; set;}
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Pesssoa>().HasIndex(p => new { p.Cpf }).IsUnique(true);
-        }
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                modelBuilder.Entity<Pesssoa>().HasIndex(p => new { p.Cpf }).IsUnique(true);
+            }
         public DbSet<Medico> Medicos { get; set;}    
         public DbSet<Paciente> Pacientes { get; set;}
         public DbSet<Enfermeiro> Enfermeiros { get;set;}
