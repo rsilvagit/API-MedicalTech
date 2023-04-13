@@ -7,6 +7,7 @@ namespace MedicalTech.Models
     public class Pesssoa
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string? NomeCompleto { get; set; }
         public DateTime? DataNascimento { get; set; }
