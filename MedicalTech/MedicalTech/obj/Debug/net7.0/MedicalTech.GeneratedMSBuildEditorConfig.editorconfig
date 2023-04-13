@@ -15,3 +15,27 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\arbos\Documents\Floripa Mais Tec-\Repositorios\Proj.Modulo1\MedicalTech\MedicalTech
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/arbos/Documents/Floripa Mais Tec-/Repositorios/Proj.Modulo1/MedicalTech/MedicalTech/Views/Pessoa/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVzc29hXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arbos/Documents/Floripa Mais Tec-/Repositorios/Proj.Modulo1/MedicalTech/MedicalTech/Views/Pessoa/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVzc29hXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arbos/Documents/Floripa Mais Tec-/Repositorios/Proj.Modulo1/MedicalTech/MedicalTech/Views/Pessoa/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVzc29hXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arbos/Documents/Floripa Mais Tec-/Repositorios/Proj.Modulo1/MedicalTech/MedicalTech/Views/Pessoa/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVzc29hXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arbos/Documents/Floripa Mais Tec-/Repositorios/Proj.Modulo1/MedicalTech/MedicalTech/Views/Pessoa/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVzc29hXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/arbos/Documents/Floripa Mais Tec-/Repositorios/Proj.Modulo1/MedicalTech/MedicalTech/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
