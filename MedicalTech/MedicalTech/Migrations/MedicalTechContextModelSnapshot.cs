@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MedicalTech.Migrations
 {
-    [DbContext(typeof(MedicalTechContext))]
+    [DbContext(typeof(IMedicalTechContext))]
     partial class MedicalTechContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

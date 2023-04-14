@@ -12,9 +12,9 @@ namespace MedicalTech.Controllers
 {
     public class PessoaController : Controller
     {
-        private readonly MedicalTechContext _context;
+        private readonly IMedicalTechContext _context;
 
-        public PessoaController(MedicalTechContext context)
+        public PessoaController(IMedicalTechContext context)
         {
             _context = context;
         }
