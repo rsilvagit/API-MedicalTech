@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MedicalTech.Migrations
 {
-    [DbContext(typeof(IMedicalTechContext))]
+    [DbContext(typeof(MedicalTechContext))]
     [Migration("20230412044224_InitialCreate")]
     partial class InitialCreate
     {
