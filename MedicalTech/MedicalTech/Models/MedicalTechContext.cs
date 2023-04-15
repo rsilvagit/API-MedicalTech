@@ -186,7 +186,8 @@ namespace MedicalTech.Models
                     Convenio = "SulAmérica",
                     StatusdeAtendimento = "Aguardando",
                     ContadorTotalAtendimentos = 4,
-                });
+                } 
+            });
 
         }
         public DbSet<Medico> Medicos { get; set; }
