@@ -60,7 +60,7 @@ namespace MedicalTech.Models
                     Telefone = "457898965",
                 }
             });
-            modelBuilder.Entity<Enfermeiro>().HasData(new[]
+            modelBuilder.Entity<Paciente>().HasData(new[]
             {
             new Paciente()
                     {
