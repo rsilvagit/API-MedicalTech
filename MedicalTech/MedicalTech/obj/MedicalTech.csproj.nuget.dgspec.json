@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj": {}
+    "C:\\Users\\arbos\\OneDrive\\Rafael Pessoal\\documentos\\TI\\Floripa Mais Tec\\Proj1-Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj": {
+    "C:\\Users\\arbos\\OneDrive\\Rafael Pessoal\\documentos\\TI\\Floripa Mais Tec\\Proj1-Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
+        "projectUniqueName": "C:\\Users\\arbos\\OneDrive\\Rafael Pessoal\\documentos\\TI\\Floripa Mais Tec\\Proj1-Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
         "projectName": "MedicalTech",
-        "projectPath": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
+        "projectPath": "C:\\Users\\arbos\\OneDrive\\Rafael Pessoal\\documentos\\TI\\Floripa Mais Tec\\Proj1-Modulo1\\MedicalTech\\MedicalTech\\MedicalTech.csproj",
         "packagesPath": "C:\\Users\\arbos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arbos\\Documents\\Floripa Mais Tec-\\Repositorios\\Proj.Modulo1\\MedicalTech\\MedicalTech\\obj\\",
+        "outputPath": "C:\\Users\\arbos\\OneDrive\\Rafael Pessoal\\documentos\\TI\\Floripa Mais Tec\\Proj1-Modulo1\\MedicalTech\\MedicalTech\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\arbos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,10 +40,6 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"

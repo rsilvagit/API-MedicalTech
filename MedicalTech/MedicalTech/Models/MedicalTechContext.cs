@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using MedicalTech.Dto;
+using MedicalTech.Base;
 
 namespace MedicalTech.Models
 {
     public class MedicalTechContext : DbContext
     {
         public MedicalTechContext(DbContextOptions<MedicalTechContext> options) : base(options) { }
-        public DbSet<Pesssoa> Pesssoas { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pesssoa>().HasIndex(p => new { p.Cpf }).IsUnique(true);
+            modelBuilder.Entity<Medico>().HasIndex(p => new { p.Cpf }).IsUnique(true);
             modelBuilder.Entity<Medico>().HasData(new[]
             {
                 new Medico()
@@ -18,6 +19,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Maria de Fatima",
                     DataNascimento = new DateTime(1990, 09, 30),
                     Cpf = "07363796220",
+                    Id=-1,
                     Crm = "133122244",
                     EspClinica = "Cirurgia Geral",
                     InstEnsinoForm = "USP",
@@ -30,6 +32,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Carlos Fontes",
                     DataNascimento = new DateTime(1980, 05, 10),
                     Cpf = "00963896220",
+                    Id=-2,
                     Crm = "8975622244",
                     EspClinica = "Pediatria",
                     InstEnsinoForm = "URGS/RS",
@@ -46,6 +49,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Thomaz Antunes",
                     DataNascimento = new DateTime(1986, 04, 25),
                     Cpf = "0096388765",
+                    Id=-3,
                     Cofen = "9871256",
                     InstEnsFormacao = "PUC/PR",
                     Telefone = "4578945678",
@@ -55,6 +59,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Tania Lozartana",
                     DataNascimento = new DateTime(1980, 03, 15),
                     Cpf = "0096385612",
+                    Id=-4,
                     Cofen = "9873456",
                     InstEnsFormacao = "UniRitter",
                     Telefone = "457898965",
@@ -67,6 +72,7 @@ namespace MedicalTech.Models
                         NomeCompleto = "Clovis Pinheiro",
                         DataNascimento = new DateTime(1960, 08, 25),
                         Cpf = "00098712",
+                        Id=-5,
                         Telefone = "4578987654",
                         ContatoDeEmergencia = "67908765413",
                         ListaCuidadosEspecifios = "Deficiente Visual",
@@ -80,6 +86,7 @@ namespace MedicalTech.Models
                         NomeCompleto = "José da Silva",
                         DataNascimento = new DateTime(1985, 05, 12),
                         Cpf = "12345678900",
+                        Id=-6,
                         Telefone = "11987654321",
                         ContatoDeEmergencia = "11999999999",
                         ListaCuidadosEspecifios = "Diabetes",
@@ -96,6 +103,7 @@ namespace MedicalTech.Models
                      NomeCompleto = "Maria Oliveira",
                      DataNascimento = new DateTime(1990, 10, 20),
                      Cpf = "98765432100",
+                     Id=-7,
                      Telefone = "21987654321",
                      ContatoDeEmergencia = "21999999999",
                      ListaCuidadosEspecifios = "Hipertensão",
@@ -110,6 +118,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Pedro Santos",
                     DataNascimento = new DateTime(1978, 03, 08),
                     Cpf = "23456789000",
+                    Id=-8,
                     Telefone = "31987654321",
                     ContatoDeEmergencia = "31999999999",
                     ListaCuidadosEspecifios = "Asma",
@@ -124,6 +133,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Ana Paula Fernandes",
                     DataNascimento = new DateTime(1982, 07, 15),
                     Cpf = "34567890100",
+                    Id=-9,
                     Telefone = "21987654321",
                     ContatoDeEmergencia = "21999999999",
                     ListaCuidadosEspecifios = "Ansiedade",
@@ -138,6 +148,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Fernando Souza",
                     DataNascimento = new DateTime(1995, 01, 30),
                     Cpf = "45678901200",
+                    Id=-10,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
                     ListaCuidadosEspecifios = "Nenhuma",
@@ -151,6 +162,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Luiz Carlos Rodrigues",
                     DataNascimento = new DateTime(1975, 06, 10),
                     Cpf = "67890123400",
+                    Id=-11,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
                     ListaCuidadosEspecifios = "Insuficiência renal",
@@ -165,6 +177,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Larissa Silva",
                     DataNascimento = new DateTime(2000, 02, 14),
                     Cpf = "78901234500",
+                    Id=-15,
                     Telefone = "21987654321",
                     ContatoDeEmergencia = "21999999999",
                     ListaCuidadosEspecifios = "Nenhuma",
@@ -179,6 +192,7 @@ namespace MedicalTech.Models
                     NomeCompleto = "Renato Souza",
                     DataNascimento = new DateTime(1989, 11, 20),
                     Cpf = "89012345600",
+                    Id=-16,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
                     ListaCuidadosEspecifios = "Nenhuma",
@@ -193,6 +207,6 @@ namespace MedicalTech.Models
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Enfermeiro> Enfermeiros { get; set; }
-        public DbSet<MedicalTech.Dto.PessoaDto> PessoaDto { get; set; } = default!;
+        
     }
 }

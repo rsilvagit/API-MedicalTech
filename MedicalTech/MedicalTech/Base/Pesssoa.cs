@@ -2,10 +2,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace MedicalTech.Models
+namespace MedicalTech.Base
 {
-    [Table("Pessoa")]
-    public class Pesssoa
+    
+    public abstract class Pesssoa
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,6 +13,6 @@ namespace MedicalTech.Models
         public string? NomeCompleto { get; set; }
         public DateTime? DataNascimento { get; set; }
         public string? Cpf { get; set; } //unique
-        public string Telefone { get; set;}
+        public string Telefone { get; set; }
     }
 }
