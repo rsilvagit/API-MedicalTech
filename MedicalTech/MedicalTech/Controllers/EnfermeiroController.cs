@@ -27,5 +27,27 @@ namespace MedicalTech.Controllers
             
             return Ok(listGetDto);
         }
+        [HttpGet("{id}")]
+        public ActionResult<EnfermeiroDto> Get([FromRoute] int id) 
+        {
+            var enfermeiroModel = _context.Enfermeiros.Find(id);
+
+            if(enfermeiroModel==null) 
+            {
+                return NotFound("Não foi localizado em nosso cadastro o enfermeiro com o id informado");
+            }
+
+            EnfermeiroDto enfermeiroDto= new EnfermeiroDto();
+            enfermeiroDto.Id = enfermeiroModel.Id;
+            enfermeiroDto.NomeCompleto = enfermeiroModel.NomeCompleto;
+            enfermeiroDto.Cpf=enfermeiroModel.Cpf;
+            enfermeiroDto.Cofen=enfermeiroModel.Cofen;
+            enfermeiroDto.DataNascimento = enfermeiroModel.DataNascimento;
+            enfermeiroDto.Telefone = enfermeiroModel.Telefone;
+            enfermeiroDto.InstEnsFormacao = enfermeiroModel.InstEnsFormacao;
+            
+            return Ok(enfermeiroDto);
+
+        }
     }
 }
