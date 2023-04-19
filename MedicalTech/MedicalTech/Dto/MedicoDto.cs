@@ -1,6 +1,6 @@
 ﻿namespace MedicalTech.Dto
 {
-    public class MedicoDto
+    public class MedicoDto:PessoaDto
     {
         public string InstEnsinoForm { get; set; }
         public string? Crm { get; set; }

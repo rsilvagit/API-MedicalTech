@@ -56,7 +56,7 @@ namespace MedicalTech.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -3,
+                            Id = 3,
                             Cofen = "9871256",
                             Cpf = "0096388765",
                             DataNascimento = new DateTime(1986, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -66,7 +66,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -4,
+                            Id = 4,
                             Cofen = "9873456",
                             Cpf = "0096385612",
                             DataNascimento = new DateTime(1980, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -124,7 +124,7 @@ namespace MedicalTech.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -1,
+                            Id = 1,
                             Cpf = "07363796220",
                             Crm = "133122244",
                             DataNascimento = new DateTime(1990, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -137,7 +137,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -2,
+                            Id = 2,
                             Cpf = "00963896220",
                             Crm = "8975622244",
                             DataNascimento = new DateTime(1980, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -199,7 +199,7 @@ namespace MedicalTech.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -5,
+                            Id = 5,
                             ContadorTotalAtendimentos = 15,
                             ContatoDeEmergencia = "67908765413",
                             Convenio = "UNIMED",
@@ -213,7 +213,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -6,
+                            Id = 6,
                             ContadorTotalAtendimentos = 5,
                             ContatoDeEmergencia = "11999999999",
                             Convenio = "Bradesco Saúde",
@@ -227,7 +227,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -7,
+                            Id = 7,
                             ContadorTotalAtendimentos = 10,
                             ContatoDeEmergencia = "21999999999",
                             Convenio = "Amil",
@@ -241,7 +241,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -8,
+                            Id = 8,
                             ContadorTotalAtendimentos = 2,
                             ContatoDeEmergencia = "31999999999",
                             Convenio = "Unimed",
@@ -255,7 +255,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -9,
+                            Id = 9,
                             ContadorTotalAtendimentos = 7,
                             ContatoDeEmergencia = "21999999999",
                             Convenio = "SulAmérica",
@@ -269,7 +269,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -10,
+                            Id = 10,
                             ContadorTotalAtendimentos = 1,
                             ContatoDeEmergencia = "11999999999",
                             Convenio = "Bradesco Saúde",
@@ -283,7 +283,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -11,
+                            Id = 11,
                             ContadorTotalAtendimentos = 3,
                             ContatoDeEmergencia = "11999999999",
                             Convenio = "Unimed",
@@ -297,7 +297,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -15,
+                            Id = 12,
                             ContadorTotalAtendimentos = 0,
                             ContatoDeEmergencia = "21999999999",
                             Convenio = "Amil",
@@ -311,7 +311,7 @@ namespace MedicalTech.Migrations
                         },
                         new
                         {
-                            Id = -16,
+                            Id = 13,
                             ContadorTotalAtendimentos = 4,
                             ContatoDeEmergencia = "11999999999",
                             Convenio = "SulAmérica",
