@@ -2,6 +2,8 @@
 using Microsoft.Identity.Client;
 using MedicalTech.Dto;
 using MedicalTech.Base;
+using MedicalTech.Enum;
+
 
 namespace MedicalTech.Models
 {
@@ -21,9 +23,9 @@ namespace MedicalTech.Models
                     Cpf = "07363796220",
                     Id=1,
                     Crm = "133122244",
-                    EspClinica = "Cirurgia Geral",
-                    InstEnsinoForm = "USP",
-                    StatusSistema = false,
+                    EspClinica =EspClinicaEnum.Ginecologia,
+                    InstEnsinoForm = "Unisinos",
+                    StatusSistema = StatusSistemaEnum.Ativo,
                     Telefone = "6126469720",
                     TotalAtendimentos = 10,
                 },
@@ -34,9 +36,9 @@ namespace MedicalTech.Models
                     Cpf = "00963896220",
                     Id=2,
                     Crm = "8975622244",
-                    EspClinica = "Pediatria",
+                    EspClinica = EspClinicaEnum.Neurologia,
                     InstEnsinoForm = "URGS/RS",
-                    StatusSistema = true,
+                    StatusSistema = StatusSistemaEnum.Inativo,
                     Telefone = "6126460098",
                     TotalAtendimentos = 34,
                 }

@@ -22,6 +22,13 @@ namespace MedicalTech.Controllers
             foreach (var item in listEnfermeiroModel)
             {
                 var enfermeiroDto = new EnfermeiroDto();
+                enfermeiroDto.Id = item.Id;
+                enfermeiroDto.NomeCompleto = item.NomeCompleto;
+                enfermeiroDto.Cpf= item.Cpf;
+                enfermeiroDto.DataNascimento = item.DataNascimento;
+                enfermeiroDto.Telefone = item.Telefone;
+                enfermeiroDto.Cofen=item.Cofen;
+                enfermeiroDto.InstEnsFormacao = item.InstEnsFormacao;
                 listGetDto.Add(enfermeiroDto);
             }
             
