@@ -1,6 +1,7 @@
 ﻿using MedicalTech.Dto;
 using MedicalTech.Models;
 using Microsoft.AspNetCore.Mvc;
+using CPFValidation;
 
 namespace MedicalTech.Controllers
 {
