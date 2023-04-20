@@ -6,9 +6,9 @@ namespace MedicalTech.Dto
     {
         public string? ContatoDeEmergencia { get; set; }
         public List<string> ListaDeAlergias { get; set; }
-        public List<string> ListaCuidadosEspecifios { get; set; }
+        public List<string> ListaCuidadosEspecificos { get; set; }
         public string Convenio { get; set; }
         public StatusAtendimentoEnum StatusAtendimento { get; set; }
-        public List<string> TotalAtendimentos { get; set; }
+        public int ContadorTotalAtendimentos { get; set; }
     }
 }

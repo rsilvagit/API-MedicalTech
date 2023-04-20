@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedicalTech.Base;
+using MedicalTech.Enum;
 
 namespace MedicalTech.Models
 {
@@ -8,10 +9,12 @@ namespace MedicalTech.Models
     public class Paciente:Pesssoa
     {
         public string? ContatoDeEmergencia { get; set; }
-        public string ListaDeAlergias { get; set; }
-        public string ListaCuidadosEspecifios { get; set; }
+        [MaxLength]
+        public string? ListaDeAlergias { get; set; }
+        [MaxLength]
+        public string? ListaCuidadosEspecificos { get; set; }
         public string Convenio { get; set; }
-        public string? StatusdeAtendimento { get; set; }
+        public StatusAtendimentoEnum StatusdeAtendimento { get; set; }
         public int  ContadorTotalAtendimentos { get; set; }
         
     }
