@@ -14,7 +14,7 @@ namespace MedicalTech.Controllers
             _context = context;
         }
         [HttpGet]
-        public ActionResult<List<PacienteDto>> Get()
+       public ActionResult<List<PacienteDto>> Get()
         {
             var listPacienteModel=_context.Pacientes.ToList();
             List<PacienteDto>listGetPacientes= new List<PacienteDto>();
@@ -30,8 +30,8 @@ namespace MedicalTech.Controllers
                 pacienteDto.ContadorTotalAtendimentos = item.ContadorTotalAtendimentos;
                 pacienteDto.StatusAtendimento = item.StatusdeAtendimento;
                 pacienteDto.Convenio = item.Convenio;
-                pacienteDto.ListaCuidadosEspecifios = item.ListaCuidadosEspecifios;
-                pacienteDto.ListaDeAlergias=item.ListaDeAlergias;
+                pacienteDto.ListaCuidadosEspecificos = item.ListaCuidadosEspecificos!.Split('|').ToList();
+                pacienteDto.ListaDeAlergias=item.ListaDeAlergias!.Split('|').ToList();
                 
 
                 listGetPacientes.Add(pacienteDto);
@@ -56,11 +56,11 @@ namespace MedicalTech.Controllers
             pacienteDto.ContadorTotalAtendimentos = pacienteModel.ContadorTotalAtendimentos;
             pacienteDto.StatusAtendimento = pacienteModel.StatusdeAtendimento;
             pacienteDto.Convenio = pacienteModel.Convenio;
-            pacienteDto.ListaCuidadosEspecificos = pacienteModel.ListaCuidadosEspecificos;
-            pacienteDto.ListaDeAlergias = pacienteModel.ListaDeAlergias;
+            pacienteDto.ListaCuidadosEspecificos = pacienteModel.ListaCuidadosEspecificos!.Split('|').ToList();
+            pacienteDto.ListaDeAlergias = pacienteModel.ListaDeAlergias!.Split('|').ToList();
 
             return Ok(pacienteDto);
-        };
+        }
         [HttpPost]
         public ActionResult<PacienteDto>Post([FromBody]PacienteDto pacienteDto)
         {
@@ -75,8 +75,8 @@ namespace MedicalTech.Controllers
             model.Telefone=pacienteDto.Telefone;
             model.ContatoDeEmergencia = pacienteDto.ContatoDeEmergencia;
             model.Convenio=pacienteDto.Convenio;
-            model.ListaCuidadosEspecificos = string.Join(" | ", pacienteDto.ListaCuidadosEspecificos!);
-            model.ListaDeAlergias = string.Join(" | ", pacienteDto.ListaDeAlergias!);
+            model.ListaCuidadosEspecificos = string.Join("|", pacienteDto.ListaCuidadosEspecificos!);
+            model.ListaDeAlergias = string.Join("|", pacienteDto.ListaDeAlergias!);
             model.StatusdeAtendimento = pacienteDto.StatusAtendimento;
             model.ContadorTotalAtendimentos = pacienteDto.ContadorTotalAtendimentos;
 
