@@ -39,8 +39,8 @@ namespace MedicalTech.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     InstEnsinoForm = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Crm = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EspClinica = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StatusSistema = table.Column<bool>(type: "bit", nullable: false),
+                    EspClinica = table.Column<int>(type: "int", nullable: false),
+                    StatusSistema = table.Column<int>(type: "int", nullable: false),
                     TotalAtendimentos = table.Column<int>(type: "int", nullable: false),
                     NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -88,8 +88,8 @@ namespace MedicalTech.Migrations
                 columns: new[] { "Id", "Cpf", "Crm", "DataNascimento", "EspClinica", "InstEnsinoForm", "NomeCompleto", "StatusSistema", "Telefone", "TotalAtendimentos" },
                 values: new object[,]
                 {
-                    { 1, "07363796220", "133122244", new DateTime(1990, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cirurgia Geral", "USP", "Maria de Fatima", false, "6126469720", 10 },
-                    { 2, "00963896220", "8975622244", new DateTime(1980, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pediatria", "URGS/RS", "Carlos Fontes", true, "6126460098", 34 }
+                    { 1, "07363796220", "133122244", new DateTime(1990, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Unisinos", "Maria de Fatima", 1, "6126469720", 10 },
+                    { 2, "00963896220", "8975622244", new DateTime(1980, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "URGS/RS", "Carlos Fontes", 0, "6126460098", 34 }
                 });
 
             migrationBuilder.InsertData(

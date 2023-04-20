@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalTech.Migrations
 {
     [DbContext(typeof(MedicalTechContext))]
-    [Migration("20230419202748_InitialCreate")]
+    [Migration("20230420023800_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -96,8 +96,8 @@ namespace MedicalTech.Migrations
                     b.Property<DateTime?>("DataNascimento")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EspClinica")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EspClinica")
+                        .HasColumnType("int");
 
                     b.Property<string>("InstEnsinoForm")
                         .IsRequired()
@@ -106,8 +106,8 @@ namespace MedicalTech.Migrations
                     b.Property<string>("NomeCompleto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("StatusSistema")
-                        .HasColumnType("bit");
+                    b.Property<int>("StatusSistema")
+                        .HasColumnType("int");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -131,10 +131,10 @@ namespace MedicalTech.Migrations
                             Cpf = "07363796220",
                             Crm = "133122244",
                             DataNascimento = new DateTime(1990, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EspClinica = "Cirurgia Geral",
-                            InstEnsinoForm = "USP",
+                            EspClinica = 3,
+                            InstEnsinoForm = "Unisinos",
                             NomeCompleto = "Maria de Fatima",
-                            StatusSistema = false,
+                            StatusSistema = 1,
                             Telefone = "6126469720",
                             TotalAtendimentos = 10
                         },
@@ -144,10 +144,10 @@ namespace MedicalTech.Migrations
                             Cpf = "00963896220",
                             Crm = "8975622244",
                             DataNascimento = new DateTime(1980, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EspClinica = "Pediatria",
+                            EspClinica = 4,
                             InstEnsinoForm = "URGS/RS",
                             NomeCompleto = "Carlos Fontes",
-                            StatusSistema = true,
+                            StatusSistema = 0,
                             Telefone = "6126460098",
                             TotalAtendimentos = 34
                         });
