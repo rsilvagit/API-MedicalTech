@@ -64,15 +64,14 @@ namespace MedicalTech.Controllers
         [HttpPost]
         public ActionResult<PacienteDto>Post([FromBody]PacienteDto pacienteDto)
         {
-            if (CpfJaCadastrado(pacienteDto.Cpf))
-            {
-                return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
-            }
             if (!ValidarCPF(pacienteDto.Cpf))
             {
                 return BadRequest("CPF invalido");
             }
-
+            if (CpfJaCadastrado(pacienteDto.Cpf))
+            {
+                return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
+            }
             Paciente model = new Paciente();
             model.NomeCompleto=pacienteDto.NomeCompleto;
             model.Cpf= pacienteDto.Cpf;
