@@ -59,10 +59,10 @@ namespace MedicalTech.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContatoDeEmergencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ListaDeAlergias = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ListaCuidadosEspecifios = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ListaDeAlergias = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ListaCuidadosEspecificos = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Convenio = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatusdeAtendimento = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StatusdeAtendimento = table.Column<int>(type: "int", nullable: false),
                     ContadorTotalAtendimentos = table.Column<int>(type: "int", nullable: false),
                     NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -94,18 +94,19 @@ namespace MedicalTech.Migrations
 
             migrationBuilder.InsertData(
                 table: "Paciente",
-                columns: new[] { "Id", "ContadorTotalAtendimentos", "ContatoDeEmergencia", "Convenio", "Cpf", "DataNascimento", "ListaCuidadosEspecifios", "ListaDeAlergias", "NomeCompleto", "StatusdeAtendimento", "Telefone" },
+                columns: new[] { "Id", "ContadorTotalAtendimentos", "ContatoDeEmergencia", "Convenio", "Cpf", "DataNascimento", "ListaCuidadosEspecificos", "ListaDeAlergias", "NomeCompleto", "StatusdeAtendimento", "Telefone" },
                 values: new object[,]
                 {
-                    { 5, 15, "67908765413", "UNIMED", "00098712", new DateTime(1960, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deficiente Visual", "Alergico a penicilina", "Clovis Pinheiro", "Aguardando", "4578987654" },
-                    { 6, 5, "11999999999", "Bradesco Saúde", "12345678900", new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Diabetes", "Nenhuma", "José da Silva", "Aguardando", "11987654321" },
-                    { 7, 10, "21999999999", "Amil", "98765432100", new DateTime(1990, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hipertensão", "Alergica a camarão", "Maria Oliveira", "Em atendimento", "21987654321" },
-                    { 8, 2, "31999999999", "Unimed", "23456789000", new DateTime(1978, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Asma", "Alergico a amendoim", "Pedro Santos", "Aguardando", "31987654321" },
-                    { 9, 7, "21999999999", "SulAmérica", "34567890100", new DateTime(1982, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ansiedade", "Nenhuma", "Ana Paula Fernandes", "Em atendimento", "21987654321" },
-                    { 10, 1, "11999999999", "Bradesco Saúde", "45678901200", new DateTime(1995, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nenhuma", "Alergico a poeira", "Fernando Souza", "Aguardando", "11987654321" },
-                    { 11, 3, "11999999999", "Unimed", "67890123400", new DateTime(1975, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Insuficiência renal", "Alergico a morango", "Luiz Carlos Rodrigues", "Em atendimento", "11987654321" },
-                    { 12, 0, "21999999999", "Amil", "78901234500", new DateTime(2000, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nenhuma", "Nenhuma", "Larissa Silva", "Aguardando", "21987654321" },
-                    { 13, 4, "11999999999", "SulAmérica", "89012345600", new DateTime(1989, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nenhuma", "Alergico a penicilina", "Renato Souza", "Aguardando", "11987654321" }
+                    { 5, 15, "67908765413", "UNIMED", "00098712", new DateTime(1960, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deficiente Visual", "Alergico a penicilina", "Clovis Pinheiro", 1, "4578987654" },
+                    { 6, 5, "11999999999", "Bradesco Saúde", "12345678900", new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Diabetes", "Nenhuma", "José da Silva", 0, "11987654321" },
+                    { 7, 10, "21999999999", "Amil", "98765432100", new DateTime(1990, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hipertensão", "Alergica a camarão", "Maria Oliveira", 1, "21987654321" },
+                    { 8, 2, "31999999999", "Unimed", "23456789000", new DateTime(1978, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Asma", "Alergico a amendoim", "Pedro Santos", 3, "31987654321" },
+                    { 9, 7, "21999999999", "SulAmérica", "34567890100", new DateTime(1982, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ansiedade", "Nenhuma", "Ana Paula Fernandes", 1, "21987654321" },
+                    { 10, 1, "11999999999", "Bradesco Saúde", "45678901200", new DateTime(1995, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nenhuma", "Alergico a poeira", "Fernando Souza", 1, "11987654321" },
+                    { 11, 3, "11999999999", "Unimed", "67890123400", new DateTime(1975, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Insuficiência renal|Cadeirante", "Alergico a morango|Alergico Lactose", "Luiz Carlos Rodrigues", 0, "11987654321" },
+                    { 12, 0, "21999999999", "Amil", "78901234500", new DateTime(2000, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nenhuma", "Nenhuma", "Larissa Silva", 2, "21987654321" },
+                    { 13, 4, "11999999999", "SulAmérica", "89012345600", new DateTime(1989, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nenhuma", "Alergico a penicilina", "Renato Souza", 2, "11987654321" },
+                    { 21, 2, "11999999999", "Unimed", "12345678910", new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cuidados com pressão alta", "Não tem", "Ana Silva", 0, "11987651234" }
                 });
 
             migrationBuilder.CreateIndex(

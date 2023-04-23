@@ -174,19 +174,17 @@ namespace MedicalTech.Migrations
                     b.Property<DateTime?>("DataNascimento")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ListaCuidadosEspecifios")
-                        .IsRequired()
+                    b.Property<string>("ListaCuidadosEspecificos")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ListaDeAlergias")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeCompleto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StatusdeAtendimento")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StatusdeAtendimento")
+                        .HasColumnType("int");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -205,10 +203,10 @@ namespace MedicalTech.Migrations
                             Convenio = "UNIMED",
                             Cpf = "00098712",
                             DataNascimento = new DateTime(1960, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Deficiente Visual",
+                            ListaCuidadosEspecificos = "Deficiente Visual",
                             ListaDeAlergias = "Alergico a penicilina",
                             NomeCompleto = "Clovis Pinheiro",
-                            StatusdeAtendimento = "Aguardando",
+                            StatusdeAtendimento = 1,
                             Telefone = "4578987654"
                         },
                         new
@@ -219,10 +217,10 @@ namespace MedicalTech.Migrations
                             Convenio = "Bradesco Saúde",
                             Cpf = "12345678900",
                             DataNascimento = new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Diabetes",
+                            ListaCuidadosEspecificos = "Diabetes",
                             ListaDeAlergias = "Nenhuma",
                             NomeCompleto = "José da Silva",
-                            StatusdeAtendimento = "Aguardando",
+                            StatusdeAtendimento = 0,
                             Telefone = "11987654321"
                         },
                         new
@@ -233,10 +231,10 @@ namespace MedicalTech.Migrations
                             Convenio = "Amil",
                             Cpf = "98765432100",
                             DataNascimento = new DateTime(1990, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Hipertensão",
+                            ListaCuidadosEspecificos = "Hipertensão",
                             ListaDeAlergias = "Alergica a camarão",
                             NomeCompleto = "Maria Oliveira",
-                            StatusdeAtendimento = "Em atendimento",
+                            StatusdeAtendimento = 1,
                             Telefone = "21987654321"
                         },
                         new
@@ -247,10 +245,10 @@ namespace MedicalTech.Migrations
                             Convenio = "Unimed",
                             Cpf = "23456789000",
                             DataNascimento = new DateTime(1978, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Asma",
+                            ListaCuidadosEspecificos = "Asma",
                             ListaDeAlergias = "Alergico a amendoim",
                             NomeCompleto = "Pedro Santos",
-                            StatusdeAtendimento = "Aguardando",
+                            StatusdeAtendimento = 3,
                             Telefone = "31987654321"
                         },
                         new
@@ -261,10 +259,10 @@ namespace MedicalTech.Migrations
                             Convenio = "SulAmérica",
                             Cpf = "34567890100",
                             DataNascimento = new DateTime(1982, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Ansiedade",
+                            ListaCuidadosEspecificos = "Ansiedade",
                             ListaDeAlergias = "Nenhuma",
                             NomeCompleto = "Ana Paula Fernandes",
-                            StatusdeAtendimento = "Em atendimento",
+                            StatusdeAtendimento = 1,
                             Telefone = "21987654321"
                         },
                         new
@@ -275,10 +273,10 @@ namespace MedicalTech.Migrations
                             Convenio = "Bradesco Saúde",
                             Cpf = "45678901200",
                             DataNascimento = new DateTime(1995, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Nenhuma",
+                            ListaCuidadosEspecificos = "Nenhuma",
                             ListaDeAlergias = "Alergico a poeira",
                             NomeCompleto = "Fernando Souza",
-                            StatusdeAtendimento = "Aguardando",
+                            StatusdeAtendimento = 1,
                             Telefone = "11987654321"
                         },
                         new
@@ -289,10 +287,10 @@ namespace MedicalTech.Migrations
                             Convenio = "Unimed",
                             Cpf = "67890123400",
                             DataNascimento = new DateTime(1975, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Insuficiência renal",
-                            ListaDeAlergias = "Alergico a morango",
+                            ListaCuidadosEspecificos = "Insuficiência renal|Cadeirante",
+                            ListaDeAlergias = "Alergico a morango|Alergico Lactose",
                             NomeCompleto = "Luiz Carlos Rodrigues",
-                            StatusdeAtendimento = "Em atendimento",
+                            StatusdeAtendimento = 0,
                             Telefone = "11987654321"
                         },
                         new
@@ -303,10 +301,10 @@ namespace MedicalTech.Migrations
                             Convenio = "Amil",
                             Cpf = "78901234500",
                             DataNascimento = new DateTime(2000, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Nenhuma",
+                            ListaCuidadosEspecificos = "Nenhuma",
                             ListaDeAlergias = "Nenhuma",
                             NomeCompleto = "Larissa Silva",
-                            StatusdeAtendimento = "Aguardando",
+                            StatusdeAtendimento = 2,
                             Telefone = "21987654321"
                         },
                         new
@@ -317,11 +315,25 @@ namespace MedicalTech.Migrations
                             Convenio = "SulAmérica",
                             Cpf = "89012345600",
                             DataNascimento = new DateTime(1989, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ListaCuidadosEspecifios = "Nenhuma",
+                            ListaCuidadosEspecificos = "Nenhuma",
                             ListaDeAlergias = "Alergico a penicilina",
                             NomeCompleto = "Renato Souza",
-                            StatusdeAtendimento = "Aguardando",
+                            StatusdeAtendimento = 2,
                             Telefone = "11987654321"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ContadorTotalAtendimentos = 2,
+                            ContatoDeEmergencia = "11999999999",
+                            Convenio = "Unimed",
+                            Cpf = "12345678910",
+                            DataNascimento = new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ListaCuidadosEspecificos = "Cuidados com pressão alta",
+                            ListaDeAlergias = "Não tem",
+                            NomeCompleto = "Ana Silva",
+                            StatusdeAtendimento = 0,
+                            Telefone = "11987651234"
                         });
                 });
 #pragma warning restore 612, 618

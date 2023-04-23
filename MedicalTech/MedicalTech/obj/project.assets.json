@@ -46,6 +46,15 @@
           }
         }
       },
+      "CPFValidation/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.1/CPFValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/CPFValidation.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -3807,6 +3816,18 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "CPFValidation/1.0.2": {
+      "sha512": "mis5ShDYRLe60CdN+4Cxch76UDWcLup6+k7GmhZ6BszsIZ59N610DjJ4H5+w9Yuaoxxh1ycKroiOS7eAd4XRXA==",
+      "type": "package",
+      "path": "cpfvalidation/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cpfvalidation.1.0.2.nupkg.sha512",
+        "cpfvalidation.nuspec",
+        "lib/netcoreapp2.1/CPFValidation.dll"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -11059,6 +11080,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "CPFValidation >= 1.0.2",
       "Microsoft.AspNetCore.OpenApi >= 7.0.5",
       "Microsoft.EntityFrameworkCore >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
@@ -11107,6 +11129,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "CPFValidation": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.5, )"

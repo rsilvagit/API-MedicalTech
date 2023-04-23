@@ -77,10 +77,10 @@ namespace MedicalTech.Models
                         Id=5,
                         Telefone = "4578987654",
                         ContatoDeEmergencia = "67908765413",
-                        ListaCuidadosEspecifios = "Deficiente Visual",
+                        ListaCuidadosEspecificos= "Deficiente Visual",
                         ListaDeAlergias = "Alergico a penicilina",
                         Convenio = "UNIMED",
-                        StatusdeAtendimento = "Aguardando",
+                        StatusdeAtendimento = StatusAtendimentoEnum.Em_Atendimento,
                         ContadorTotalAtendimentos = 15,
                     },
                 new Paciente()
@@ -91,10 +91,10 @@ namespace MedicalTech.Models
                         Id=6,
                         Telefone = "11987654321",
                         ContatoDeEmergencia = "11999999999",
-                        ListaCuidadosEspecifios = "Diabetes",
+                        ListaCuidadosEspecificos = "Diabetes",
                         ListaDeAlergias = "Nenhuma",
                         Convenio = "Bradesco Saúde",
-                        StatusdeAtendimento = "Aguardando",
+                        StatusdeAtendimento = StatusAtendimentoEnum.Aguardando_Atendimento,
                         ContadorTotalAtendimentos = 5,
                     },
 
@@ -108,10 +108,10 @@ namespace MedicalTech.Models
                      Id=7,
                      Telefone = "21987654321",
                      ContatoDeEmergencia = "21999999999",
-                     ListaCuidadosEspecifios = "Hipertensão",
+                     ListaCuidadosEspecificos = "Hipertensão",
                      ListaDeAlergias = "Alergica a camarão",
                      Convenio = "Amil",
-                     StatusdeAtendimento = "Em atendimento",
+                     StatusdeAtendimento = StatusAtendimentoEnum.Em_Atendimento,
                      ContadorTotalAtendimentos = 10,
                 },
 
@@ -123,10 +123,10 @@ namespace MedicalTech.Models
                     Id=8,
                     Telefone = "31987654321",
                     ContatoDeEmergencia = "31999999999",
-                    ListaCuidadosEspecifios = "Asma",
+                    ListaCuidadosEspecificos = "Asma",
                     ListaDeAlergias = "Alergico a amendoim",
                     Convenio = "Unimed",
-                    StatusdeAtendimento = "Aguardando",
+                    StatusdeAtendimento = StatusAtendimentoEnum.Nao_Atendido,
                     ContadorTotalAtendimentos = 2,
                 },
 
@@ -138,10 +138,10 @@ namespace MedicalTech.Models
                     Id=9,
                     Telefone = "21987654321",
                     ContatoDeEmergencia = "21999999999",
-                    ListaCuidadosEspecifios = "Ansiedade",
+                    ListaCuidadosEspecificos = "Ansiedade",
                     ListaDeAlergias = "Nenhuma",
                     Convenio = "SulAmérica",
-                    StatusdeAtendimento = "Em atendimento",
+                    StatusdeAtendimento = StatusAtendimentoEnum.Em_Atendimento,
                     ContadorTotalAtendimentos = 7,
                 },
 
@@ -153,10 +153,10 @@ namespace MedicalTech.Models
                     Id=10,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
-                    ListaCuidadosEspecifios = "Nenhuma",
+                    ListaCuidadosEspecificos = "Nenhuma",
                     ListaDeAlergias = "Alergico a poeira",
                     Convenio = "Bradesco Saúde",
-                    StatusdeAtendimento = "Aguardando",
+                    StatusdeAtendimento = StatusAtendimentoEnum.Em_Atendimento,
                     ContadorTotalAtendimentos = 1,
                 },
                 new Paciente()
@@ -167,10 +167,10 @@ namespace MedicalTech.Models
                     Id=11,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
-                    ListaCuidadosEspecifios = "Insuficiência renal",
-                    ListaDeAlergias = "Alergico a morango",
+                    ListaCuidadosEspecificos = "Insuficiência renal|Cadeirante",
+                    ListaDeAlergias = "Alergico a morango|Alergico Lactose",
                     Convenio = "Unimed",
-                    StatusdeAtendimento = "Em atendimento",
+                    StatusdeAtendimento = StatusAtendimentoEnum.Aguardando_Atendimento,
                     ContadorTotalAtendimentos = 3,
                 },
 
@@ -182,10 +182,10 @@ namespace MedicalTech.Models
                     Id=12,
                     Telefone = "21987654321",
                     ContatoDeEmergencia = "21999999999",
-                    ListaCuidadosEspecifios = "Nenhuma",
+                    ListaCuidadosEspecificos = "Nenhuma",
                     ListaDeAlergias = "Nenhuma",
                     Convenio = "Amil",
-                    StatusdeAtendimento = "Aguardando",
+                    StatusdeAtendimento = StatusAtendimentoEnum.Atendido,
                     ContadorTotalAtendimentos = 0,
                 },
 
@@ -197,13 +197,28 @@ namespace MedicalTech.Models
                     Id=13,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
-                    ListaCuidadosEspecifios = "Nenhuma",
+                    ListaCuidadosEspecificos = "Nenhuma",
                     ListaDeAlergias = "Alergico a penicilina",
                     Convenio = "SulAmérica",
-                    StatusdeAtendimento = "Aguardando",
+                    StatusdeAtendimento = StatusAtendimentoEnum.Atendido,
                     ContadorTotalAtendimentos = 4,
-                } 
-            });
+                },
+                new Paciente()
+{
+                NomeCompleto = "Ana Silva",
+                DataNascimento = new DateTime(1995, 05, 12),
+                Cpf = "12345678910",
+                Id = 21,
+                Telefone = "11987651234",
+                ContatoDeEmergencia = "11999999999",
+                ListaCuidadosEspecificos = "Cuidados com pressão alta",
+                ListaDeAlergias = "Não tem",
+                Convenio = "Unimed",
+                StatusdeAtendimento = StatusAtendimentoEnum.Aguardando_Atendimento,
+                ContadorTotalAtendimentos = 2,
+                }
+
+        });
 
         }
         public DbSet<Medico> Medicos { get; set; }
