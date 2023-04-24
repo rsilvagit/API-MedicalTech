@@ -79,6 +79,21 @@ namespace MedicalTech.Controllers
             model.StatusSistema = medicoDto.StatusSistema;
             return Created(Request.Path, medicoDto);
         }
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            var mdelete = _context.Medicos.Find(id);
+            if (mdelete != null)
+            {
+                _context.Medicos.Remove(mdelete);
+                _context.SaveChanges();
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            } 
+        }
         private bool CpfJaCadastrado(string cpf)
         {
             return _context.Pacientes.Any(p => p.Cpf == cpf);

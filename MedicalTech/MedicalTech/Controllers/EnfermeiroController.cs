@@ -79,6 +79,21 @@ namespace MedicalTech.Controllers
 
             return Created(Request.Path, enfermeiroDto);
         }
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            var edelete = _context.Enfermeiros.Find(id);
+            if (edelete != null)
+            {
+                _context.Enfermeiros.Remove(edelete);
+                _context.SaveChanges();
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
         private bool CpfJaCadastrado(string cpf)
         {
             return _context.Pacientes.Any(p => p.Cpf == cpf);

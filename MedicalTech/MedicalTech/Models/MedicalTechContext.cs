@@ -20,7 +20,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Maria de Fatima",
                     DataNascimento = new DateTime(1990, 09, 30),
-                    Cpf = "07363796220",
+                    Cpf = "207.138.120-36",
                     Id=1,
                     Crm = "133122244",
                     EspClinica =EspClinicaEnum.Ginecologia,
@@ -33,7 +33,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Carlos Fontes",
                     DataNascimento = new DateTime(1980, 05, 10),
-                    Cpf = "00963896220",
+                    Cpf = "918.293.130-53",
                     Id=2,
                     Crm = "8975622244",
                     EspClinica = EspClinicaEnum.Neurologia,
@@ -50,7 +50,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Thomaz Antunes",
                     DataNascimento = new DateTime(1986, 04, 25),
-                    Cpf = "0096388765",
+                    Cpf = "573.053.080-30",
                     Id=3,
                     Cofen = "9871256",
                     InstEnsFormacao = "PUC/PR",
@@ -60,7 +60,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Tania Lozartana",
                     DataNascimento = new DateTime(1980, 03, 15),
-                    Cpf = "0096385612",
+                    Cpf = "024.306.570-15",
                     Id=4,
                     Cofen = "9873456",
                     InstEnsFormacao = "UniRitter",
@@ -73,7 +73,7 @@ namespace MedicalTech.Models
                     {
                         NomeCompleto = "Clovis Pinheiro",
                         DataNascimento = new DateTime(1960, 08, 25),
-                        Cpf = "00098712",
+                        Cpf = "364.835.440-06",
                         Id=5,
                         Telefone = "4578987654",
                         ContatoDeEmergencia = "67908765413",
@@ -87,7 +87,7 @@ namespace MedicalTech.Models
                     {
                         NomeCompleto = "José da Silva",
                         DataNascimento = new DateTime(1985, 05, 12),
-                        Cpf = "12345678900",
+                        Cpf = "768.168.230-95",
                         Id=6,
                         Telefone = "11987654321",
                         ContatoDeEmergencia = "11999999999",
@@ -104,7 +104,7 @@ namespace MedicalTech.Models
                 {
                      NomeCompleto = "Maria Oliveira",
                      DataNascimento = new DateTime(1990, 10, 20),
-                     Cpf = "98765432100",
+                     Cpf = "015.128.240-46",
                      Id=7,
                      Telefone = "21987654321",
                      ContatoDeEmergencia = "21999999999",
@@ -119,7 +119,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Pedro Santos",
                     DataNascimento = new DateTime(1978, 03, 08),
-                    Cpf = "23456789000",
+                    Cpf = "022.185.900-42",
                     Id=8,
                     Telefone = "31987654321",
                     ContatoDeEmergencia = "31999999999",
@@ -134,7 +134,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Ana Paula Fernandes",
                     DataNascimento = new DateTime(1982, 07, 15),
-                    Cpf = "34567890100",
+                    Cpf = "511.755.110-99",
                     Id=9,
                     Telefone = "21987654321",
                     ContatoDeEmergencia = "21999999999",
@@ -149,7 +149,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Fernando Souza",
                     DataNascimento = new DateTime(1995, 01, 30),
-                    Cpf = "45678901200",
+                    Cpf = "966.931.580-80",
                     Id=10,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
@@ -163,7 +163,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Luiz Carlos Rodrigues",
                     DataNascimento = new DateTime(1975, 06, 10),
-                    Cpf = "67890123400",
+                    Cpf = "002.958.820-00",
                     Id=11,
                     Telefone = "11987654321",
                     ContatoDeEmergencia = "11999999999",
@@ -178,7 +178,7 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Larissa Silva",
                     DataNascimento = new DateTime(2000, 02, 14),
-                    Cpf = "78901234500",
+                    Cpf = "631.192.340-87",
                     Id=12,
                     Telefone = "21987654321",
                     ContatoDeEmergencia = "21999999999",
@@ -193,9 +193,9 @@ namespace MedicalTech.Models
                 {
                     NomeCompleto = "Renato Souza",
                     DataNascimento = new DateTime(1989, 11, 20),
-                    Cpf = "89012345600",
+                    Cpf = "629.783.790-22",
                     Id=13,
-                    Telefone = "11987654321",
+                    Telefone = "51995783456",
                     ContatoDeEmergencia = "11999999999",
                     ListaCuidadosEspecificos = "Nenhuma",
                     ListaDeAlergias = "Alergico a penicilina",
@@ -207,8 +207,8 @@ namespace MedicalTech.Models
 {
                 NomeCompleto = "Ana Silva",
                 DataNascimento = new DateTime(1995, 05, 12),
-                Cpf = "12345678910",
-                Id = 21,
+                Cpf = "492.470.580-23",
+                Id = 14,
                 Telefone = "11987651234",
                 ContatoDeEmergencia = "11999999999",
                 ListaCuidadosEspecificos = "Cuidados com pressão alta",
