@@ -8,13 +8,15 @@ namespace MedicalTech.Models
     [Table("Paciente")]
     public class Paciente:Pesssoa
     {
+
+        [Required]
         public string? ContatoDeEmergencia { get; set; }
         [MaxLength]
         public string? ListaDeAlergias { get; set; }
         [MaxLength]
         public string? ListaCuidadosEspecificos { get; set; }
         public string Convenio { get; set; }
-        public StatusAtendimentoEnum StatusdeAtendimento { get; set; }
+        public StatusAtendimentoEnum StatusdeAtendimento { get; set; } = StatusAtendimentoEnum.Nao_Atendido;
         public int  ContadorTotalAtendimentos { get; set; }
         
     }
