@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 namespace MedicalTech.Controllers
 {
-    [Route("/controller")]
+    [Route("api/[controller]")]
     public class PacienteController : Controller
     {
         private readonly MedicalTechContext _context;
@@ -101,7 +101,7 @@ namespace MedicalTech.Controllers
                 return NotFound();
             }
         }
-        [HttpPut("/paciente{id}")]
+        [HttpPut("{id}")]
         public ActionResult<PacienteDto> Put(int id,[FromBody] PacienteDto pacienteDto)
         {
             var pacienteModel = _context.Pacientes.Where(w => w.Id == id).FirstOrDefault();

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedicalTech.Controllers
 {
-    [Route("/[controller]")]
+    [Route("api/[controller]")]
 
     public class MedicoController : ControllerBase
     {

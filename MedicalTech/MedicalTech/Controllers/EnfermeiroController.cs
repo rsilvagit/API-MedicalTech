@@ -5,7 +5,7 @@ using CPFValidation;
 
 namespace MedicalTech.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EnfermeiroController : Controller
     {
         private readonly MedicalTechContext _context;
