@@ -63,27 +63,27 @@ namespace MedicalTech.Controllers
         }
         [HttpPost]
         
-               public ActionResult<MedicoPostDTO> Post([FromBody] MedicoPostDTO dto)
+               public ActionResult<MedicoPostDTO> Post([FromBody] MedicoPostDTO medicoPostDTO)
         {
-            if (CpfJaCadastrado(dto.Cpf))
+            if (CpfJaCadastrado(medicoPostDTO.Cpf))
             {
                 return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
             }
-            if (!ValidarCPF(dto.Cpf))
+            if (!ValidarCPF(medicoPostDTO.Cpf))
             {
                 return BadRequest("CPF invalido");
             }
 
             Medico model = new Medico();
-            model.NomeCompleto = dto.NomeCompleto;
-            model.Cpf = dto.Cpf;
-            model.DataNascimento = dto.DataNascimento;
-            model.Telefone = dto.Telefone;
-            model.EspClinica = dto.EspClinica;
-            model.StatusSistema = dto.StatusSistema;
+            model.NomeCompleto = medicoPostDTO.NomeCompleto;
+            model.Cpf = medicoPostDTO.Cpf;
+            model.DataNascimento = medicoPostDTO.DataNascimento;
+            model.Telefone = medicoPostDTO.Telefone;
+            model.EspClinica = medicoPostDTO.EspClinica;
+            model.StatusSistema = medicoPostDTO.StatusSistema;
             _context.Medicos.Add(model);
             _context.SaveChanges();
-            return Created(Request.Path, dto);
+            return Created(Request.Path, medicoPostDTO);
         }
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)

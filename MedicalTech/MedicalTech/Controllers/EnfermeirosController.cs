@@ -2,6 +2,8 @@
 using MedicalTech.Models;
 using Microsoft.AspNetCore.Mvc;
 using CPFValidation;
+using System.Net;
+using DocumentValidator;
 
 namespace MedicalTech.Controllers
 {
@@ -36,7 +38,7 @@ namespace MedicalTech.Controllers
             return Ok(listGetDto);
         }
         [HttpGet("{id}")]
-        public ActionResult<EnfermeiroGetDTO> Get([FromRoute]int id) 
+        public ActionResult<EnfermeiroGetDTO> Get([FromRoute] int id)
         {
             var enfermeiroModel = _context.Enfermeiros.Find(id);
 
@@ -60,15 +62,20 @@ namespace MedicalTech.Controllers
         [HttpPost]
         public ActionResult<EnfermeiroPostDTO> Post([FromBody] EnfermeiroPostDTO enfermeiroPostDto)
         {
-           
-            if (!ValidarCPF(enfermeiroPostDto.Cpf))
+            if (!TryValidateModel(enfermeiroPostDto.InstEnsFormacao)) { return StatusCode(400, "O campos obrigatorio InstEnsEnsino não está preenchidos estão nulos ou com dados inválidos"); }
+            if (!TryValidateModel(enfermeiroPostDto.Cofen)) { return StatusCode(400, "O campos obrigatorio Cofen não está preenchidos estão nulos ou com dados inválidos"); }
+
+            if (string.IsNullOrEmpty(enfermeiroPostDto.Cpf))
             {
-                return BadRequest("CPF invalido");
-            } 
-            if (CpfJaCadastrado(enfermeiroPostDto.Cpf))
-            {
-                return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
+                return StatusCode(400, "O campo CPF é obrigatório e não foi preenchido");
             }
+            if (_context.Enfermeiros.Any(e => e.Cpf == enfermeiroPostDto.Cpf))
+            {
+                return StatusCode(409, "Já existe um enfermeiro com o mesmo CPF");
+            }
+
+
+
             Enfermeiro model = new Enfermeiro();
             model.NomeCompleto = enfermeiroPostDto.NomeCompleto;
             model.Cpf = enfermeiroPostDto.Cpf;
@@ -94,45 +101,6 @@ namespace MedicalTech.Controllers
             {
                 return NotFound();
             }
-        }
-        private bool CpfJaCadastrado(string cpf)
-        {
-            return _context.Pacientes.Any(p => p.Cpf == cpf);
-        }
-        private static bool ValidarCPF(string cpf)
-        {
-            const int tamanhoCpf = 11;
-            int[] multiplicadoresPrimeiroDigito = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplicadoresSegundoDigito = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            cpf = cpf.Replace(".", "").Replace("-", "");
-
-            if (string.IsNullOrEmpty(cpf) || cpf.Length != tamanhoCpf)
-            {
-                return false;
-            }
-            int soma = 0;
-            for (int i = 0; i < multiplicadoresPrimeiroDigito.Length; i++)
-            {
-                soma += int.Parse(cpf[i].ToString()) * multiplicadoresPrimeiroDigito[i];
-            }
-            int resto = soma % 11;
-            int primeiroDigito = resto < 2 ? 0 : 11 - resto;
-            if (primeiroDigito != int.Parse(cpf[9].ToString()))
-            {
-                return false;
-            }
-            soma = 0;
-            for (int i = 0; i < multiplicadoresSegundoDigito.Length; i++)
-            {
-                soma += int.Parse(cpf[i].ToString()) * multiplicadoresSegundoDigito[i];
-            }
-            resto = soma % 11;
-            int segundoDigito = resto < 2 ? 0 : 11 - resto;
-            if (segundoDigito != int.Parse(cpf[10].ToString()))
-            {
-                return false;
-            }
-            return true;
         }
 
     }

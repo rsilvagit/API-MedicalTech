@@ -14,11 +14,10 @@ namespace MedicalTech.Dto
         [StringLength(20)]
         public string Crm { get; set; }
         [Required]
-        [MaxLength(20)]
         public EspClinicaEnum EspClinica { get; set; }
-        [MaxLength(10)]
+        
         public StatusSistemaEnum StatusSistema { get; set; }
-        [MaxLength]
+        
         public int TotalAtendimentos { get; set; }
 
     }
