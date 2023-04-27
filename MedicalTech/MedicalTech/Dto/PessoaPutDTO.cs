@@ -1,15 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-
-namespace MedicalTech.Base
+namespace MedicalTech.Dto
 {
-
-    public abstract class Pesssoa
+    public class PessoaPutDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+      
         [MaxLength(50)]
         [StringLength(35)]
         public string? NomeCompleto { get; set; }

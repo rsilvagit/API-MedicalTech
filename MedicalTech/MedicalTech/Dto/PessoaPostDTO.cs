@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
-
-namespace MedicalTech.Base
+namespace MedicalTech.Dto
 {
-
-    public abstract class Pesssoa
+    public class PessoaPostDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+       
         [MaxLength(50)]
         [StringLength(35)]
         public string? NomeCompleto { get; set; }
@@ -19,6 +16,7 @@ namespace MedicalTech.Base
         [Required(ErrorMessage = "O preenchimento do campo CPF é obrigatório e precisa ter no minimo 11 caracteres"), MinLength(11)]
         public string Cpf { get; set; }
         public string Telefone { get; set; }
+
 
     }
 }

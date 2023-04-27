@@ -1,11 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using MedicalTech.Base;
 
-namespace MedicalTech.Models
+namespace MedicalTech.Dto
 {
-    [Table("Enfermeiro")]
-    public class Enfermeiro:Pesssoa
+    public class EnfermeiroPostDTO:PessoaPostDTO
     {
         [Required]
         [StringLength(35)]

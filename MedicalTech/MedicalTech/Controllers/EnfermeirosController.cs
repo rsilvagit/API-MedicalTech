@@ -15,14 +15,14 @@ namespace MedicalTech.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<EnfermeiroDto>> Get()
+        public ActionResult<List<EnfermeiroGetDTO>> Get()
         {
             var listEnfermeiroModel = _context.Enfermeiros;
-            List<EnfermeiroDto> listGetDto = new List<EnfermeiroDto>();
+            List<EnfermeiroGetDTO> listGetDto = new List<EnfermeiroGetDTO>();
 
             foreach (var item in listEnfermeiroModel)
             {
-                var enfermeiroDto = new EnfermeiroDto();
+                var enfermeiroDto = new EnfermeiroGetDTO();
                 enfermeiroDto.Id = item.Id;
                 enfermeiroDto.NomeCompleto = item.NomeCompleto;
                 enfermeiroDto.Cpf = item.Cpf;
@@ -36,7 +36,7 @@ namespace MedicalTech.Controllers
             return Ok(listGetDto);
         }
         [HttpGet("{id}")]
-        public ActionResult<EnfermeiroDto> Get([FromRoute] int id)
+        public ActionResult<EnfermeiroGetDTO> Get([FromRoute]int id) 
         {
             var enfermeiroModel = _context.Enfermeiros.Find(id);
 
@@ -45,7 +45,7 @@ namespace MedicalTech.Controllers
                 return NotFound("Não foi localizado em nosso cadastro o enfermeiro com o id informado");
             }
 
-            EnfermeiroDto enfermeiroDto = new EnfermeiroDto();
+            EnfermeiroGetDTO enfermeiroDto = new EnfermeiroGetDTO();
             enfermeiroDto.Id = enfermeiroModel.Id;
             enfermeiroDto.NomeCompleto = enfermeiroModel.NomeCompleto;
             enfermeiroDto.Cpf = enfermeiroModel.Cpf;
@@ -58,26 +58,27 @@ namespace MedicalTech.Controllers
 
         }
         [HttpPost]
-        public ActionResult<EnfermeiroDto> Post([FromBody] EnfermeiroDto enfermeiroDto)
+        public ActionResult<EnfermeiroPostDTO> Post([FromBody] EnfermeiroPostDTO enfermeiroPostDto)
         {
-            if (!ValidarCPF(enfermeiroDto.Cpf))
+           
+            if (!ValidarCPF(enfermeiroPostDto.Cpf))
             {
                 return BadRequest("CPF invalido");
-            }
-            if (CpfJaCadastrado(enfermeiroDto.Cpf))
+            } 
+            if (CpfJaCadastrado(enfermeiroPostDto.Cpf))
             {
                 return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
             }
             Enfermeiro model = new Enfermeiro();
-            model.NomeCompleto = enfermeiroDto.NomeCompleto;
-            model.Cpf = enfermeiroDto.Cpf;
-            model.DataNascimento = enfermeiroDto.DataNascimento;
-            model.Telefone = enfermeiroDto.Telefone;
-            model.InstEnsFormacao = enfermeiroDto.InstEnsFormacao;
-            model.Cofen = enfermeiroDto.Cofen;
-            
-
-            return Created(Request.Path, enfermeiroDto);
+            model.NomeCompleto = enfermeiroPostDto.NomeCompleto;
+            model.Cpf = enfermeiroPostDto.Cpf;
+            model.DataNascimento = enfermeiroPostDto.DataNascimento;
+            model.Telefone = enfermeiroPostDto.Telefone;
+            model.InstEnsFormacao = enfermeiroPostDto.InstEnsFormacao;
+            model.Cofen = enfermeiroPostDto.Cofen;
+            _context.Enfermeiros.Add(model);
+            _context.SaveChanges();
+            return Created(Request.Path, enfermeiroPostDto);
         }
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)

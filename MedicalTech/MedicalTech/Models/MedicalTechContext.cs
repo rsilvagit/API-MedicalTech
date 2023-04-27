@@ -13,7 +13,8 @@ namespace MedicalTech.Models
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Medico>().HasIndex(p => new { p.Cpf }).IsUnique(true);
+            modelBuilder.Entity<Medico>().HasIndex(m => new { m.Cpf }).IsUnique(true);
+            modelBuilder.Entity<Medico>().HasIndex(m => new { m.Crm }).IsUnique(true);
             modelBuilder.Entity<Medico>().HasData(new[]
             {
                 new Medico()
@@ -44,6 +45,8 @@ namespace MedicalTech.Models
                 }
 
             });
+            modelBuilder.Entity<Enfermeiro>().HasIndex(e => new { e.Cpf }).IsUnique(true);
+            modelBuilder.Entity<Enfermeiro>().HasIndex(e => new { e.Cofen }).IsUnique(true);
             modelBuilder.Entity<Enfermeiro>().HasData(new[]
             {
                 new Enfermeiro()
@@ -67,6 +70,7 @@ namespace MedicalTech.Models
                     Telefone = "457898965",
                 }
             });
+            modelBuilder.Entity<Paciente>().HasIndex(p => new { p.Cpf }).IsUnique(true);
             modelBuilder.Entity<Paciente>().HasData(new[]
             {
             new Paciente()

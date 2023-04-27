@@ -2,8 +2,9 @@
 using MedicalTech.Models;
 using MedicalTech.Enum;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using DocumentValidator;
+using System.Globalization;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace MedicalTech.Controllers
 {
@@ -16,13 +17,13 @@ namespace MedicalTech.Controllers
             _context = context;
         }
         [HttpGet]
-        public ActionResult<List<PacienteDto>> Get()
+        public ActionResult<List<PacienteGetDTO>> Get()
         {
             var listPacienteModel = _context.Pacientes.ToList();
-            List<PacienteDto> listGetPacientes = new List<PacienteDto>();
+            List<PacienteGetDTO> listGetPacientes = new List<PacienteGetDTO>();
             foreach (var item in listPacienteModel)
             {
-                var pacienteDto = new PacienteDto();
+                var pacienteDto = new PacienteGetDTO();
                 pacienteDto.Id = item.Id;
                 pacienteDto.NomeCompleto = item.NomeCompleto;
                 pacienteDto.Cpf = item.Cpf;
@@ -30,7 +31,7 @@ namespace MedicalTech.Controllers
                 pacienteDto.Telefone = item.Telefone;
                 pacienteDto.ContatoDeEmergencia = item.ContatoDeEmergencia;
                 pacienteDto.ContadorTotalAtendimentos = item.ContadorTotalAtendimentos;
-                pacienteDto.StatusAtendimento = item.StatusdeAtendimento;
+                pacienteDto.StatusdeAtendimento = item.StatusdeAtendimento;
                 pacienteDto.Convenio = item.Convenio;
                 pacienteDto.ListaCuidadosEspecificos = item.ListaCuidadosEspecificos!.Split('|').ToList();
                 pacienteDto.ListaDeAlergias = item.ListaDeAlergias!.Split('|').ToList();
@@ -41,14 +42,14 @@ namespace MedicalTech.Controllers
             return Ok(listGetPacientes);
         }
         [HttpGet("{id}")]
-        public ActionResult<PacienteDto> Get([FromRoute] int id)
+        public ActionResult<PacienteGetDTO> Get([FromRoute] int id)
         {
             var pacienteModel = _context.Pacientes.Find(id);
             if (pacienteModel == null)
             {
                 return BadRequest("Não foi localizado em nosso cadastro o paciente com o id informado");
             }
-            var pacienteDto = new PacienteDto();
+            var pacienteDto = new PacienteGetDTO();
             pacienteDto.Id = pacienteModel.Id;
             pacienteDto.NomeCompleto = pacienteModel.NomeCompleto;
             pacienteDto.Cpf = pacienteModel.Cpf;
@@ -56,37 +57,43 @@ namespace MedicalTech.Controllers
             pacienteDto.Telefone = pacienteModel.Telefone;
             pacienteDto.ContatoDeEmergencia = pacienteModel.ContatoDeEmergencia;
             pacienteDto.ContadorTotalAtendimentos = pacienteModel.ContadorTotalAtendimentos;
-            pacienteDto.StatusAtendimento = pacienteModel.StatusdeAtendimento;
+            pacienteDto.StatusdeAtendimento = pacienteModel.StatusdeAtendimento;
             pacienteDto.Convenio = pacienteModel.Convenio;
             pacienteDto.ListaCuidadosEspecificos = pacienteModel.ListaCuidadosEspecificos!.Split('|').ToList();
             pacienteDto.ListaDeAlergias = pacienteModel.ListaDeAlergias!.Split('|').ToList();
 
             return Ok(pacienteDto);
         }
-        [HttpPost]
-        public ActionResult<PacienteDto> Post([FromBody] PacienteDto pacienteDto)
-        {
-            if (!ValidarCPF(pacienteDto.Cpf))
+        [HttpPost("[Controller]")]
+        public ActionResult<PacientePostDTO> Post([FromBody] PacientePostDTO pacientePostDTO)
+            {
+            /*if (CpfValidation.Validate(pacientePostDTO.Cpf)== false)
             {
                 return BadRequest("CPF invalido");
-            }
-            if (CpfJaCadastrado(pacienteDto.Cpf))
+            }*/
+            if (CpfJaCadastrado(pacientePostDTO.Cpf))
             {
                 return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
             }
+            if (pacientePostDTO.DataNascimento == null || pacientePostDTO.ContatoDeEmergencia == null) 
+            { 
+                return BadRequest("Preencha os campos obrigatórios, Data de Nascimento e contato de emergência");
+            }
+            
             Paciente model = new Paciente();
-            model.NomeCompleto = pacienteDto.NomeCompleto;
-            model.Cpf = pacienteDto.Cpf;
-            model.DataNascimento = pacienteDto.DataNascimento;
-            model.Telefone = pacienteDto.Telefone;
-            model.ContatoDeEmergencia = pacienteDto.ContatoDeEmergencia;
-            model.Convenio = pacienteDto.Convenio;
-            model.ListaCuidadosEspecificos = string.Join("|", pacienteDto.ListaCuidadosEspecificos!);
-            model.ListaDeAlergias = string.Join("|", pacienteDto.ListaDeAlergias!);
-            model.StatusdeAtendimento = pacienteDto.StatusAtendimento;
-            model.ContadorTotalAtendimentos = pacienteDto.ContadorTotalAtendimentos;
-
-            return Created(Request.Path, pacienteDto);
+            model.NomeCompleto = pacientePostDTO.NomeCompleto;
+            model.Cpf = pacientePostDTO.Cpf;
+            model.DataNascimento = pacientePostDTO.DataNascimento;
+            model.Telefone = pacientePostDTO.Telefone;
+            model.ContatoDeEmergencia = pacientePostDTO.ContatoDeEmergencia;
+            model.Convenio = pacientePostDTO.Convenio;
+            model.ListaCuidadosEspecificos = string.Join("|", pacientePostDTO.ListaCuidadosEspecificos!);
+            model.ListaDeAlergias = string.Join("|", pacientePostDTO.ListaDeAlergias!);
+            model.StatusdeAtendimento = pacientePostDTO.StatusAtendimento;
+            model.ContadorTotalAtendimentos = pacientePostDTO.ContadorTotalAtendimentos;
+            _context.Pacientes.Add(model);
+            _context.SaveChanges();
+            return Created(Request.Path, pacientePostDTO);
         }
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
@@ -104,38 +111,38 @@ namespace MedicalTech.Controllers
             }
         }
         [HttpPut("{id}")]
-        public ActionResult<PacienteDto> Put(int id,[FromBody] PacienteDto pacienteDto)
+        public ActionResult<PacientePutDTO> Put(int id,[FromBody] PacientePutDTO pacientePutDto)
         {
             var pacienteModel = _context.Pacientes.Where(w => w.Id == id).FirstOrDefault();
             if (pacienteModel == null)
             {
                 return NotFound("Id não localizado!!! Certifique-se de informar o id e cpf correspondente ao paciente que deseja atualizar os dados");
             }
-            if (_context.Pacientes.Any(p=>p.Cpf == pacienteDto.Cpf && p.Id != id))
+            if (_context.Pacientes.Any(p=>p.Cpf == pacientePutDto.Cpf && p.Id != id))
             {
                 return BadRequest("Já existe um CPF cadastrado neste paciente, a alteração deste CPF não é permitida");
             }
-            if (!ValidarCPF(pacienteDto.Cpf))
+            if (!ValidarCPF(pacientePutDto.Cpf))
             {
                 return BadRequest("CPF Inválido");
             }
-            pacienteModel.NomeCompleto = pacienteDto.NomeCompleto;
-            pacienteModel.Cpf = pacienteDto.Cpf;
-            pacienteModel.DataNascimento = pacienteDto.DataNascimento;
-            pacienteModel.Telefone = pacienteDto.Telefone;
-            pacienteModel.ContatoDeEmergencia = pacienteDto.ContatoDeEmergencia;
-            pacienteModel.Convenio = pacienteDto.Convenio;
-            pacienteModel.ListaCuidadosEspecificos = string.Join("|", pacienteDto.ListaCuidadosEspecificos!);
-            pacienteModel.ListaDeAlergias = string.Join("|", pacienteDto.ListaDeAlergias!);
-            pacienteModel.StatusdeAtendimento = pacienteDto.StatusAtendimento;
-            pacienteModel.ContadorTotalAtendimentos = pacienteDto.ContadorTotalAtendimentos;
+            pacienteModel.NomeCompleto = pacientePutDto.NomeCompleto;
+            pacienteModel.Cpf = pacientePutDto.Cpf;
+            pacienteModel.DataNascimento = pacientePutDto.DataNascimento;
+            pacienteModel.Telefone = pacientePutDto.Telefone;
+            pacienteModel.ContatoDeEmergencia = pacientePutDto.ContatoDeEmergencia;
+            pacienteModel.Convenio = pacientePutDto.Convenio;
+            pacienteModel.ListaCuidadosEspecificos = string.Join("|", pacientePutDto.ListaCuidadosEspecificos!);
+            pacienteModel.ListaDeAlergias = string.Join("|", pacientePutDto.ListaDeAlergias!);
+            pacienteModel.StatusdeAtendimento = pacientePutDto.StatusdeAtendimento;
+            pacienteModel.ContadorTotalAtendimentos = pacientePutDto.ContadorTotalAtendimentos;
 
             _context.Pacientes.Attach(pacienteModel);
             _context.SaveChanges();
-            return Ok(pacienteDto);
+            return Ok(pacientePutDto);
         }
-        [HttpPut("{id}/StatusdeAtendimento")]
-        public ActionResult<PacienteDto> Put(int id, [FromBody] PacientePutStatusDTO statusDTO)
+        [HttpPut("{id}/Status")]
+        public ActionResult<PacientePutStatusDTO> Put(int id, [FromBody] PacientePutStatusDTO statusDTO)
         {
             var pacienteModel = _context.Pacientes.FirstOrDefault(p => p.Id == id);
             if (pacienteModel == null)
@@ -148,12 +155,12 @@ namespace MedicalTech.Controllers
                 return BadRequest("O status de atendimento informsdo  é inválido. Informe uma das seguintes opções válidas:\n0 - Aguardando_Atendimento\n1 - Em_Atendimento\n2 - Atendido\n3 - Nao_Atendido");
             }
 
-            pacienteModel.StatusdeAtendimento = statusDTO.StatusAtendimento;
+            pacienteModel.StatusdeAtendimento = (StatusAtendimentoEnum)statusDTO.StatusAtendimento;
 
             _context.SaveChanges();
 
 
-            return Ok(statusDTO);
+            return Ok($"Paciente ID {id} teve seu status de atendimento atualizado para {statusDTO.StatusAtendimento}");
         }
 
         private bool CpfJaCadastrado(string cpf)

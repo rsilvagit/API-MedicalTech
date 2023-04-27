@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalTech.Migrations
 {
     [DbContext(typeof(MedicalTechContext))]
-    [Migration("20230424193744_InitialCreate")]
+    [Migration("20230427023846_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,25 +34,37 @@ namespace MedicalTech.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cofen")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Cpf")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("DataNascimento")
+                    b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InstEnsFormacao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("NomeCompleto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cofen")
+                        .IsUnique();
+
+                    b.HasIndex("Cpf")
+                        .IsUnique();
 
                     b.ToTable("Enfermeiro");
 
@@ -88,25 +100,32 @@ namespace MedicalTech.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cpf")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Crm")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<DateTime?>("DataNascimento")
+                    b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EspClinica")
+                        .HasMaxLength(20)
                         .HasColumnType("int");
 
                     b.Property<string>("InstEnsinoForm")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NomeCompleto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<int>("StatusSistema")
+                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<string>("Telefone")
@@ -119,8 +138,10 @@ namespace MedicalTech.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Cpf")
-                        .IsUnique()
-                        .HasFilter("[Cpf] IS NOT NULL");
+                        .IsUnique();
+
+                    b.HasIndex("Crm")
+                        .IsUnique();
 
                     b.ToTable("Medico");
 
@@ -170,12 +191,14 @@ namespace MedicalTech.Migrations
 
                     b.Property<string>("Convenio")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Cpf")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("DataNascimento")
+                    b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ListaCuidadosEspecificos")
@@ -185,9 +208,11 @@ namespace MedicalTech.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeCompleto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<int>("StatusdeAtendimento")
+                        .HasMaxLength(15)
                         .HasColumnType("int");
 
                     b.Property<string>("Telefone")
@@ -195,6 +220,9 @@ namespace MedicalTech.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cpf")
+                        .IsUnique();
 
                     b.ToTable("Paciente");
 

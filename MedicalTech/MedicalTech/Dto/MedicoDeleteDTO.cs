@@ -1,11 +1,9 @@
-﻿using MedicalTech.Base;
-using MedicalTech.Enum;
+﻿using MedicalTech.Enum;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MedicalTech.Dto
 {
-    public class MedicoPutDTO:PessoaPutDTO
+    public class MedicoDeleteDTO:PessoaDeleteDTO
     {
         [Required]
         [StringLength(100)]
@@ -20,6 +18,5 @@ namespace MedicalTech.Dto
         public StatusSistemaEnum StatusSistema { get; set; }
         [MaxLength]
         public int TotalAtendimentos { get; set; }
-
     }
 }

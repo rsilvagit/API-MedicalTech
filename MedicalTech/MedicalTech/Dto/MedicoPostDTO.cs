@@ -1,11 +1,11 @@
-﻿using MedicalTech.Base;
-using MedicalTech.Enum;
+﻿using MedicalTech.Enum;
+using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+using RequiredAttribute = Microsoft.Build.Framework.RequiredAttribute;
 
 namespace MedicalTech.Dto
 {
-    public class MedicoPutDTO:PessoaPutDTO
+    public class MedicoPostDTO:PessoaPostDTO
     {
         [Required]
         [StringLength(100)]

@@ -9,12 +9,17 @@ namespace MedicalTech.Models
     public class Medico:Pesssoa
     {
         [Required]
-        public string InstEnsinoForm { get; set; }
+        [StringLength(100)]
+       public string? InstEnsinoForm { get; set; }
         [Required]
-       public string? Crm { get; set; }
+        [StringLength(20)]
+       public string Crm { get; set; }
         [Required]
-        public EspClinicaEnum EspClinica { get; set; }
+        [MaxLength(20)]
+       public EspClinicaEnum EspClinica { get; set; }
+        [MaxLength(10)]
        public StatusSistemaEnum StatusSistema { get; set; }
+        [MaxLength]
        public int TotalAtendimentos { get; set; }
 
     }

@@ -9,14 +9,17 @@ namespace MedicalTech.Models
     public class Paciente:Pesssoa
     {
 
-        [Required]
+        [Required(ErrorMessage = "O preenchimento do campo Contato de Emergência é obrigatório")]
         public string? ContatoDeEmergencia { get; set; }
         [MaxLength]
         public string? ListaDeAlergias { get; set; }
         [MaxLength]
         public string? ListaCuidadosEspecificos { get; set; }
+        [StringLength(15)]
         public string Convenio { get; set; }
-        public StatusAtendimentoEnum StatusdeAtendimento { get; set; } = StatusAtendimentoEnum.Nao_Atendido;
+        [MaxLength(15)]
+        public StatusAtendimentoEnum StatusdeAtendimento { get; set; }
+        [MaxLength]
         public int  ContadorTotalAtendimentos { get; set; }
         
     }

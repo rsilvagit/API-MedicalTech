@@ -19,11 +19,11 @@ namespace MedicalTech.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InstEnsFormacao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Cofen = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Cpf = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstEnsFormacao = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
+                    Cofen = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    NomeCompleto = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cpf = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -37,14 +37,14 @@ namespace MedicalTech.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InstEnsinoForm = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Crm = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EspClinica = table.Column<int>(type: "int", nullable: false),
-                    StatusSistema = table.Column<int>(type: "int", nullable: false),
+                    InstEnsinoForm = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Crm = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    EspClinica = table.Column<int>(type: "int", maxLength: 20, nullable: false),
+                    StatusSistema = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     TotalAtendimentos = table.Column<int>(type: "int", nullable: false),
-                    NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Cpf = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    NomeCompleto = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cpf = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -61,12 +61,12 @@ namespace MedicalTech.Migrations
                     ContatoDeEmergencia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ListaDeAlergias = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ListaCuidadosEspecificos = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Convenio = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatusdeAtendimento = table.Column<int>(type: "int", nullable: false),
+                    Convenio = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    StatusdeAtendimento = table.Column<int>(type: "int", maxLength: 15, nullable: false),
                     ContadorTotalAtendimentos = table.Column<int>(type: "int", nullable: false),
-                    NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Cpf = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomeCompleto = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cpf = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -110,11 +110,34 @@ namespace MedicalTech.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Enfermeiro_Cofen",
+                table: "Enfermeiro",
+                column: "Cofen",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enfermeiro_Cpf",
+                table: "Enfermeiro",
+                column: "Cpf",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Medico_Cpf",
                 table: "Medico",
                 column: "Cpf",
-                unique: true,
-                filter: "[Cpf] IS NOT NULL");
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medico_Crm",
+                table: "Medico",
+                column: "Crm",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Paciente_Cpf",
+                table: "Paciente",
+                column: "Cpf",
+                unique: true);
         }
 
         /// <inheritdoc />

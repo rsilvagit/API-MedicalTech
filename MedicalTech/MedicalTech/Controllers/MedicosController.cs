@@ -1,4 +1,5 @@
 ﻿using MedicalTech.Dto;
+using MedicalTech.Enum;
 using MedicalTech.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,20 +19,20 @@ namespace MedicalTech.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<MedicoDto>> Get()
+        public ActionResult<List<MedicoGetDTO>> Get()
         {
             var listMedicoModel = _context.Medicos;
-            List<MedicoDto> listGetDto = new List<MedicoDto>();
+            List<MedicoGetDTO> listGetDto = new List<MedicoGetDTO>();
 
             foreach (var item in listMedicoModel)
             {
-                var medicoDto = new MedicoDto();
+                var medicoDto = new MedicoGetDTO();
                 medicoDto.Id = item.Id;
                 medicoDto.NomeCompleto = item.NomeCompleto;
                 medicoDto.Cpf = item.Cpf;
                 medicoDto.DataNascimento = item.DataNascimento;
                 medicoDto.Telefone = item.Telefone;
-                medicoDto.EspClinica = item.EspClinica;
+                medicoDto.EspClinica = (EspClinicaEnum)item.EspClinica;
                 medicoDto.InstEnsinoForm = item.InstEnsinoForm;
                 medicoDto.Crm = item.Crm;
                 medicoDto.StatusSistema = item.StatusSistema;
@@ -41,45 +42,48 @@ namespace MedicalTech.Controllers
             return Ok(listGetDto);
         }
         [HttpGet("{id}")]
-        public ActionResult<MedicoDto> Get([FromRoute] int id)
+              public ActionResult<MedicoGetDTO> Get([FromRoute] string id)
         {
             var medicoModel = _context.Medicos.Find(id);
             if (medicoModel == null)
             {
                 return NotFound("Não foi localizado em nosso cadastro o médico com o id informado");
             }
-            var medicoDto = new MedicoDto();
-            medicoDto.Id = medicoModel.Id;
-            medicoDto.NomeCompleto = medicoModel.NomeCompleto;
-            medicoDto.Cpf = medicoModel.Cpf;
-            medicoDto.DataNascimento = medicoModel.DataNascimento;
-            medicoDto.Telefone = medicoModel.Telefone;
-            medicoDto.EspClinica = medicoModel.EspClinica;
-            medicoDto.InstEnsinoForm = medicoModel.InstEnsinoForm;
-            medicoDto.Crm = medicoModel.Crm;
-            medicoDto.StatusSistema = medicoModel.StatusSistema;
-            return (medicoDto);
+            var getDto = new MedicoGetDTO();
+            getDto.Id = medicoModel.Id;
+            getDto.NomeCompleto = medicoModel.NomeCompleto;
+            getDto.Cpf = medicoModel.Cpf;
+            getDto.DataNascimento = medicoModel.DataNascimento;
+            getDto.Telefone = medicoModel.Telefone;
+            getDto.EspClinica = (EspClinicaEnum) medicoModel.EspClinica;
+            getDto.InstEnsinoForm = medicoModel.InstEnsinoForm;
+            getDto.Crm = medicoModel.Crm;
+            getDto.StatusSistema = medicoModel.StatusSistema;
+            return (getDto);
         }
         [HttpPost]
-        public ActionResult<MedicoDto> Post([FromBody] MedicoDto medicoDto)
+        
+               public ActionResult<MedicoPostDTO> Post([FromBody] MedicoPostDTO dto)
         {
-            if (CpfJaCadastrado(medicoDto.Cpf))
+            if (CpfJaCadastrado(dto.Cpf))
             {
                 return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
             }
-            if (!ValidarCPF(medicoDto.Cpf))
+            if (!ValidarCPF(dto.Cpf))
             {
                 return BadRequest("CPF invalido");
             }
 
             Medico model = new Medico();
-            model.NomeCompleto = medicoDto.NomeCompleto;
-            model.Cpf = medicoDto.Cpf;
-            model.DataNascimento = medicoDto.DataNascimento;
-            model.Telefone = medicoDto.Telefone;
-            model.EspClinica = medicoDto.EspClinica;
-            model.StatusSistema = medicoDto.StatusSistema;
-            return Created(Request.Path, medicoDto);
+            model.NomeCompleto = dto.NomeCompleto;
+            model.Cpf = dto.Cpf;
+            model.DataNascimento = dto.DataNascimento;
+            model.Telefone = dto.Telefone;
+            model.EspClinica = dto.EspClinica;
+            model.StatusSistema = dto.StatusSistema;
+            _context.Medicos.Add(model);
+            _context.SaveChanges();
+            return Created(Request.Path, dto);
         }
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
@@ -114,7 +118,7 @@ namespace MedicalTech.Controllers
             }
 
             medicoPut.NomeCompleto = medicoPutDTO.NomeCompleto;
-            medicoPut.EspClinica = (Enum.EspClinicaEnum)medicoPutDTO.EspClinica;
+            medicoPut.EspClinica = (EspClinicaEnum)medicoPutDTO.EspClinica;
             medicoPut.Telefone = medicoPutDTO.Telefone;
             medicoPut.DataNascimento = medicoPutDTO.DataNascimento;
             medicoPut.InstEnsinoForm = medicoPutDTO.InstEnsinoForm;
