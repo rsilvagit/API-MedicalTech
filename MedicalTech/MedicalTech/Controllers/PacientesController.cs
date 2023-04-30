@@ -2,7 +2,6 @@
 using MedicalTech.Models;
 using MedicalTech.Enum;
 using Microsoft.AspNetCore.Mvc;
-using DocumentValidator;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -65,21 +64,22 @@ namespace MedicalTech.Controllers
             return Ok(pacienteDto);
         }
         [HttpPost("[Controller]")]
-        public ActionResult<PacientePostDTO> Post([FromBody] PacientePostDTO pacientePostDTO)
-            {
-            /*if (CpfValidation.Validate(pacientePostDTO.Cpf)== false)
-            {
-                return BadRequest("CPF invalido");
-            }*/
+        public ActionResult<PacientePostDTO> Post([FromBody] PacientePostDTO pacientePostDTO, PessoaPostDTO pessoaPostDTO)
+
+        {
+            if (!TryValidateModel(pacientePostDTO.ContatoDeEmergencia)) { return StatusCode(400, "O preenchimento do campo contato de emergência é obrigatório "); }
+            if (!TryValidateModel(pessoaPostDTO.DataNascimento)) { return StatusCode(400, "O preenchimento do campo Data de Nascimento com uma data válida é obrigatório "); }
+
+            
             if (CpfJaCadastrado(pacientePostDTO.Cpf))
             {
                 return StatusCode(StatusCodes.Status409Conflict, "CPF já cadastrado em nosso sistema");
             }
-            if (pacientePostDTO.DataNascimento == null || pacientePostDTO.ContatoDeEmergencia == null) 
-            { 
+            if (pacientePostDTO.DataNascimento == null || pacientePostDTO.ContatoDeEmergencia == null)
+            {
                 return BadRequest("Preencha os campos obrigatórios, Data de Nascimento e contato de emergência");
             }
-            
+
             Paciente model = new Paciente();
             model.NomeCompleto = pacientePostDTO.NomeCompleto;
             model.Cpf = pacientePostDTO.Cpf;
@@ -111,21 +111,18 @@ namespace MedicalTech.Controllers
             }
         }
         [HttpPut("{id}")]
-        public ActionResult<PacientePutDTO> Put(int id,[FromBody] PacientePutDTO pacientePutDto)
+        public ActionResult<PacientePutDTO> Put(int id, [FromBody] PacientePutDTO pacientePutDto)
         {
             var pacienteModel = _context.Pacientes.Where(w => w.Id == id).FirstOrDefault();
             if (pacienteModel == null)
             {
                 return NotFound("Id não localizado!!! Certifique-se de informar o id e cpf correspondente ao paciente que deseja atualizar os dados");
             }
-            if (_context.Pacientes.Any(p=>p.Cpf == pacientePutDto.Cpf && p.Id != id))
+            if (_context.Pacientes.Any(p => p.Cpf == pacientePutDto.Cpf && p.Id != id))
             {
                 return BadRequest("Já existe um CPF cadastrado neste paciente, a alteração deste CPF não é permitida");
             }
-            if (!ValidarCPF(pacientePutDto.Cpf))
-            {
-                return BadRequest("CPF Inválido");
-            }
+           
             pacienteModel.NomeCompleto = pacientePutDto.NomeCompleto;
             pacienteModel.Cpf = pacientePutDto.Cpf;
             pacienteModel.DataNascimento = pacientePutDto.DataNascimento;
@@ -136,7 +133,6 @@ namespace MedicalTech.Controllers
             pacienteModel.ListaDeAlergias = string.Join("|", pacientePutDto.ListaDeAlergias!);
             pacienteModel.StatusdeAtendimento = pacientePutDto.StatusdeAtendimento;
             pacienteModel.ContadorTotalAtendimentos = pacientePutDto.ContadorTotalAtendimentos;
-
             _context.Pacientes.Attach(pacienteModel);
             _context.SaveChanges();
             return Ok(pacientePutDto);
@@ -166,42 +162,6 @@ namespace MedicalTech.Controllers
         private bool CpfJaCadastrado(string cpf)
         {
             return _context.Pacientes.Any(p => p.Cpf == cpf);
-        }
-        private static bool ValidarCPF(string cpf)
-        {
-            const int tamanhoCpf = 11;
-            int[] multiplicadoresPrimeiroDigito = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplicadoresSegundoDigito = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-            cpf= cpf.Replace(".","").Replace("-","");
-            if (string.IsNullOrEmpty(cpf) || cpf.Length != tamanhoCpf)
-            {
-                return false;
-            }
-           
-            int soma = 0;
-            for (int i = 0; i < multiplicadoresPrimeiroDigito.Length; i++)
-            {
-                soma += int.Parse(cpf[i].ToString()) * multiplicadoresPrimeiroDigito[i];
-            }
-            int resto = soma % 11;
-            int primeiroDigito = resto < 2 ? 0 : 11 - resto;
-            if (primeiroDigito != int.Parse(cpf[9].ToString()))
-            {
-                return false;
-            }
-            soma = 0;
-            for (int i = 0; i < multiplicadoresSegundoDigito.Length; i++)
-            {
-                soma += int.Parse(cpf[i].ToString()) * multiplicadoresSegundoDigito[i];
-            }
-            resto = soma % 11;
-            int segundoDigito = resto < 2 ? 0 : 11 - resto;
-            if (segundoDigito != int.Parse(cpf[10].ToString()))
-            {
-                return false;
-            }
-            return true;
         }
 
     }

@@ -1,9 +1,7 @@
 ﻿using MedicalTech.Dto;
 using MedicalTech.Models;
 using Microsoft.AspNetCore.Mvc;
-using CPFValidation;
-using System.Net;
-using DocumentValidator;
+
 
 namespace MedicalTech.Controllers
 {
@@ -73,9 +71,6 @@ namespace MedicalTech.Controllers
             {
                 return StatusCode(409, "Já existe um enfermeiro com o mesmo CPF");
             }
-
-
-
             Enfermeiro model = new Enfermeiro();
             model.NomeCompleto = enfermeiroPostDto.NomeCompleto;
             model.Cpf = enfermeiroPostDto.Cpf;
@@ -101,6 +96,29 @@ namespace MedicalTech.Controllers
             {
                 return NotFound();
             }
+        }
+        [HttpPut("{id}")]
+        public ActionResult<EnfermeiroPutDTO> Put(int id, [FromBody] EnfermeiroPutDTO enfermeiroPutDto)
+        {
+            var enfermeiroModel = _context.Enfermeiros.Where(w => w.Id == id).FirstOrDefault();
+            if (enfermeiroModel == null)
+            {
+                return NotFound("Id não localizado!!! Certifique-se de informar o id e cpf correspondente ao enfermeiro que deseja atualizar os dados");
+            }
+            if (_context.Pacientes.Any(p => p.Cpf == enfermeiroPutDto.Cpf && p.Id != id))
+            {
+                return BadRequest("Já existe um CPF cadastrado neste paciente, a alteração deste CPF não é permitida");
+            }
+
+            enfermeiroModel.NomeCompleto = enfermeiroPutDto.NomeCompleto;
+            enfermeiroModel.Cpf = enfermeiroPutDto.Cpf;
+            enfermeiroModel.DataNascimento = enfermeiroPutDto.DataNascimento;
+            enfermeiroModel.Telefone = enfermeiroPutDto.Telefone;
+            enfermeiroModel.Cofen = enfermeiroPutDto.Cofen;
+            enfermeiroModel.InstEnsFormacao = enfermeiroPutDto.InstEnsFormacao;
+            _context.Enfermeiros.Attach(enfermeiroModel);
+            _context.SaveChanges();
+            return Ok(enfermeiroPutDto);
         }
 
     }
