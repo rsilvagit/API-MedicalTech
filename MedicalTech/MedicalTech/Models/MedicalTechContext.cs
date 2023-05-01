@@ -228,7 +228,7 @@ namespace MedicalTech.Models
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Enfermeiro> Enfermeiros { get; set; }
-        public DbSet<Atendimento> Atendimentos { get; set;}
+       
         
     }
 }

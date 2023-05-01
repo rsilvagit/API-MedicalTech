@@ -21,6 +21,6 @@ namespace MedicalTech.Models
        public StatusSistemaEnum StatusSistema { get; set; }
         [MaxLength]
        public int TotalAtendimentos { get; set; }
-
+       
     }
 }

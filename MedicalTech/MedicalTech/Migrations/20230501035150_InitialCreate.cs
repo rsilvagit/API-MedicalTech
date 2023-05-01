@@ -37,10 +37,10 @@ namespace MedicalTech.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InstEnsinoForm = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    InstEnsinoForm = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Crm = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    EspClinica = table.Column<int>(type: "int", maxLength: 20, nullable: false),
-                    StatusSistema = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    EspClinica = table.Column<int>(type: "int", nullable: false),
+                    StatusSistema = table.Column<int>(type: "int", nullable: false),
                     TotalAtendimentos = table.Column<int>(type: "int", nullable: false),
                     NomeCompleto = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: true),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -72,34 +72,6 @@ namespace MedicalTech.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Paciente", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Atendimento",
-                columns: table => new
-                {
-                    Id_Atendimento = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdMedico = table.Column<int>(type: "int", nullable: false),
-                    IdPaciente = table.Column<int>(type: "int", nullable: false),
-                    PacienteId = table.Column<int>(type: "int", nullable: false),
-                    DescricaoAtendimento = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Atendimento", x => x.Id_Atendimento);
-                    table.ForeignKey(
-                        name: "FK_Atendimento_Medico_IdMedico",
-                        column: x => x.IdMedico,
-                        principalTable: "Medico",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Atendimento_Paciente_PacienteId",
-                        column: x => x.PacienteId,
-                        principalTable: "Paciente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -138,16 +110,6 @@ namespace MedicalTech.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Atendimento_IdMedico",
-                table: "Atendimento",
-                column: "IdMedico");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Atendimento_PacienteId",
-                table: "Atendimento",
-                column: "PacienteId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Enfermeiro_Cofen",
                 table: "Enfermeiro",
                 column: "Cofen",
@@ -181,9 +143,6 @@ namespace MedicalTech.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Atendimento");
-
             migrationBuilder.DropTable(
                 name: "Enfermeiro");
 
