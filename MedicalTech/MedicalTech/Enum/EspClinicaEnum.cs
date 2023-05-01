@@ -1,5 +1,8 @@
-﻿namespace MedicalTech.Enum
+﻿using System.Text.Json.Serialization;
+
+namespace MedicalTech.Enumerador
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EspClinicaEnum
     {
         Clinico_Geral=0,

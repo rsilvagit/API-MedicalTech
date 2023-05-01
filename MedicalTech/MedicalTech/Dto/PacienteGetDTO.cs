@@ -1,5 +1,7 @@
-﻿using MedicalTech.Enum;
+﻿using MedicalTech.Enumerador;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using static MedicalTech.Base.Validation;
 
 namespace MedicalTech.Dto
 {
@@ -13,7 +15,7 @@ namespace MedicalTech.Dto
         public List <string> ListaCuidadosEspecificos { get; set; }
         [StringLength(15)]
         public string Convenio { get; set; }
-        [MaxLength(15)]
+        [JsonConverter(typeof(StatusAtendimentoConverter))]
         public StatusAtendimentoEnum StatusdeAtendimento { get; set; }
         [MaxLength]
         public int ContadorTotalAtendimentos { get; set; }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalTech.Migrations
 {
     [DbContext(typeof(MedicalTechContext))]
-    [Migration("20230427023846_InitialCreate")]
+    [Migration("20230501013322_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,37 @@ namespace MedicalTech.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("MedicalTech.Models.Atendimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_Atendimento");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DescricaoAtendimento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdMedico")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPaciente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdMedico");
+
+                    b.HasIndex("PacienteId");
+
+                    b.ToTable("Atendimento");
+                });
 
             modelBuilder.Entity("MedicalTech.Models.Enfermeiro", b =>
                 {
@@ -116,7 +147,6 @@ namespace MedicalTech.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("InstEnsinoForm")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -202,9 +232,11 @@ namespace MedicalTech.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ListaCuidadosEspecificos")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ListaDeAlergias")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeCompleto")
@@ -212,7 +244,6 @@ namespace MedicalTech.Migrations
                         .HasColumnType("nvarchar(35)");
 
                     b.Property<int>("StatusdeAtendimento")
-                        .HasMaxLength(15)
                         .HasColumnType("int");
 
                     b.Property<string>("Telefone")
@@ -367,6 +398,25 @@ namespace MedicalTech.Migrations
                             StatusdeAtendimento = 0,
                             Telefone = "11987651234"
                         });
+                });
+
+            modelBuilder.Entity("MedicalTech.Models.Atendimento", b =>
+                {
+                    b.HasOne("MedicalTech.Models.Medico", "Medico")
+                        .WithMany()
+                        .HasForeignKey("IdMedico")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MedicalTech.Models.Paciente", "Paciente")
+                        .WithMany()
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medico");
+
+                    b.Navigation("Paciente");
                 });
 #pragma warning restore 612, 618
         }

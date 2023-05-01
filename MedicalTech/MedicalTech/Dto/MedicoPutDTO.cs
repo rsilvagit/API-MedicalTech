@@ -1,24 +1,26 @@
 ﻿using MedicalTech.Base;
-using MedicalTech.Enum;
+using MedicalTech.Enumerador;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+using static MedicalTech.Base.Validation;
 
 namespace MedicalTech.Dto
 {
     public class MedicoPutDTO:PessoaPutDTO
     {
-        [Required]
+      
         [StringLength(100)]
         public string InstEnsinoForm { get; set; }
-        [Required]
+        
         [StringLength(20)]
         public string Crm { get; set; }
         [Required]
-        [MaxLength(20)]
+        [JsonConverter(typeof(EspClinicaConverter))]
         public EspClinicaEnum EspClinica { get; set; }
-        [MaxLength(10)]
+        [JsonConverter(typeof(StatusSistemaConverter))]
         public StatusSistemaEnum StatusSistema { get; set; }
-        [MaxLength]
+     
         public int TotalAtendimentos { get; set; }
 
     }
