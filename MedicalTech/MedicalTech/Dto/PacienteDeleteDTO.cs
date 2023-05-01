@@ -12,8 +12,7 @@ namespace MedicalTech.Dto
         [MaxLength]
         public List<string> ListaDeAlergias { get; set; }
         [MaxLength]
-        public List <string> ListaCuidadosEspecificos { get; set; }
-        
+        public List <string> ListaCuidadosEspecificos { get; set; }  
         public string Convenio { get; set; }
         [JsonConverter(typeof(StatusAtendimentoConverter))]
         public StatusAtendimentoEnum StatusdeAtendimento { get; set; }

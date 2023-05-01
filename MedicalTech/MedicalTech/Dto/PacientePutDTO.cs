@@ -9,16 +9,12 @@ namespace MedicalTech.Dto
     {
        
         public string ContatoDeEmergencia { get; set; }
-       
         public List<string> ListaDeAlergias { get; set; }
-       
         public List<string> ListaCuidadosEspecificos { get; set; }
         [StringLength(15)]
         public string Convenio { get; set; }
-       
         [JsonConverter(typeof(StatusAtendimentoConverter))]
         public StatusAtendimentoEnum StatusdeAtendimento { get; set; }
-        
         public int ContadorTotalAtendimentos { get; set; }
     }
 }

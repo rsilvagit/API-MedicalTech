@@ -9,6 +9,5 @@ namespace MedicalTech.Dto
     {
         [JsonConverter(typeof(StatusAtendimentoConverter))]
         public StatusAtendimentoEnum StatusAtendimento { get; set; }
-
     }
 }

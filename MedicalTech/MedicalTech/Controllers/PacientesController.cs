@@ -81,7 +81,7 @@ namespace MedicalTech.Controllers
         {
             try
             {
-                if (pacientePostDTO.ContatoDeEmergencia =="")
+                if (pacientePostDTO.ContatoDeEmergencia == "")
                 {
                     return StatusCode(400, "O preenchimento do campo contato de emergência é obrigatório ");
                 }
@@ -135,7 +135,7 @@ namespace MedicalTech.Controllers
             }
         }
 
-        
+
         [HttpPut("{identificador}")]
         public ActionResult<PacientePutDTO> Put(int identificador, [FromBody] PacientePutDTO pacientePutDto)
         {
@@ -150,7 +150,7 @@ namespace MedicalTech.Controllers
                 {
                     return Conflict($"Já existe um paciente candastrado no cpf {pacientePutDto.Cpf} em nossa base de dados");
                 }
-                
+
 
                 pacienteModel.NomeCompleto = pacientePutDto.NomeCompleto;
                 pacienteModel.Cpf = pacientePutDto.Cpf;

@@ -66,7 +66,7 @@ namespace MedicalTech.Controllers
             }
             catch
             {
-                
+
                 return StatusCode(500, $"Ocorreu um erro ao buscar o enfermeiro com id {identificador}");
             }
         }
@@ -75,11 +75,11 @@ namespace MedicalTech.Controllers
         {
             try
             {
-                if (enfermeiroPostDto.InstEnsFormacao=="")
+                if (enfermeiroPostDto.InstEnsFormacao == "")
                 {
                     return StatusCode(400, "O campo obrigatório InstEnsEnsino não está preenchido ou está nulo");
                 }
-                if (enfermeiroPostDto.Cofen=="")
+                if (enfermeiroPostDto.Cofen == "")
                 {
                     return StatusCode(400, "O campo obrigatório Cofen não está preenchido ou está nulo");
                 }
@@ -144,7 +144,7 @@ namespace MedicalTech.Controllers
                 {
                     return StatusCode(409, "Já existe um enfermeiro com o mesmo CPF");
                 }
-                
+
                 enfermeiroModel.NomeCompleto = enfermeiroPutDto.NomeCompleto;
                 enfermeiroModel.Cpf = enfermeiroPutDto.Cpf;
                 enfermeiroModel.DataNascimento = enfermeiroPutDto.DataNascimento;
